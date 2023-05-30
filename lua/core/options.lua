@@ -49,9 +49,9 @@ vim.api.nvim_set_keymap('n', '<C-S>', ':w<CR>', { noremap = true })
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true })
 
 -- move to mappings
-g.copilot_no_tab_map = true
-g.copilot_assume_mapped = true
-vim.api.nvim_set_keymap("i", "<C-O>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+--g.copilot_no_tab_map = true
+--g.copilot_assume_mapped = true
+--vim.api.nvim_set_keymap("i", "<C-O>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
 opt.clipboard = { 'unnamed', 'unnamedplus' }
 

@@ -1,12 +1,4 @@
-local present, nvimtree = pcall(require, "nvim-tree")
-
-if not present then
-  return
-end
-
-require("base46").load_highlight "nvimtree"
-
-local options = {
+return {
   filters = {
     dotfiles = false,
     exclude = { vim.fn.stdpath "config" .. "/lua/custom" },
@@ -14,7 +6,6 @@ local options = {
   disable_netrw = true,
   hijack_netrw = true,
   open_on_setup = false,
-  ignore_ft_on_setup = { "alpha" },
   hijack_cursor = true,
   hijack_unnamed_buffer_when_opening = false,
   update_cwd = true,
@@ -83,8 +74,3 @@ local options = {
   },
 }
 
--- check for any override
-options = require("core.utils").load_override(options, "kyazdani42/nvim-tree.lua")
-vim.g.nvimtree_side = options.view.side
-
-nvimtree.setup(options)

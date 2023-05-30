@@ -1,13 +1,4 @@
-local present, wk = pcall(require, "which-key")
-
-if not present then
-  return
-end
-
-require("base46").load_highlight "whichkey"
-
-local options = {
-
+return {
   icons = {
     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
     separator = "  ", -- symbol used between a key and it's label
@@ -35,7 +26,3 @@ local options = {
     v = { "j", "k" },
   },
 }
-
-options = require("core.utils").load_override(options, "folke/which-key.nvim")
-
-wk.setup(options)
