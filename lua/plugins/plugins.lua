@@ -1,4 +1,23 @@
 local plugins = {
+
+  {
+    "sainnhe/everforest",
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+        vim.opt.termguicolors = true
+        vim.opt.background = "dark"
+        vim.g.everforest_background = "medium"
+        vim.g.everforest_enable_italic = 1
+        vim.g.everforest_better_performance = 1
+        vim.g.nvim_tree_disable_statusline = 1
+
+        -- load the colorscheme here
+        vim.cmd([[colorscheme everforest]])
+    end,
+    enabled = false
+  },
+
   {
     "folke/tokyonight.nvim",
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
@@ -7,6 +26,7 @@ local plugins = {
       -- load the colorscheme here
       vim.cmd([[colorscheme tokyonight]])
     end,
+    enabled = true,
   },
 
   { 
@@ -34,8 +54,7 @@ local plugins = {
     keys = {
       {"<leader>e", "<cmd> NvimTreeFocus <CR>", desc = "focus nvimtree" },
     },
-   -- opts = {}
-    opts = require("plugins.configs.nvimtree")
+    config = require("plugins.configs.nvimtree")
   },
 
   {
@@ -62,7 +81,8 @@ local plugins = {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = require("plugins.configs.treesitter")
+    -- opts = require("plugins.configs.treesitter"),
+    config = require("plugins.configs.treesitter")
   },
 
   { 
@@ -72,7 +92,7 @@ local plugins = {
 
   {
     "mg979/vim-visual-multi",
-    lazy = true
+    lazy = false
   },
 
   'nvim-lua/plenary.nvim',
@@ -86,6 +106,10 @@ local plugins = {
 
   {
     'numToStr/Comment.nvim',
+    keys = {
+        {"<leader>/", function() require("Comment.api").toggle.linewise.current() end, mode = "n", desc = "toggle comment" },
+        {"<leader>/",  "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", mode = "v", desc = "toggle comment" },
+    },
     opts = {}
   }
 }

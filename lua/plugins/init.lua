@@ -14,3 +14,12 @@ vim.opt.rtp:prepend(lazypath)
 local plugins, opts = require("plugins.plugins")
 
 require("lazy").setup(plugins, opts)
+
+-- vim.cmd([[
+--   augroup NvimTreeOverride
+--     autocmd!
+--     autocmd BufEnter NvimTree * highlight NvimTreeEndOfBuffer guibg=NONE
+--     autocmd VimEnter * highlight NvimTreeNormal guibg=NONE
+--   augroup END
+-- ]])
+--

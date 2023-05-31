@@ -1,10 +1,11 @@
 local opt = vim.opt
 local g = vim.g
 
-g.theme_switcher_loaded = false
-
 opt.laststatus = 3 -- global statusline
 opt.showmode = false
+opt.termguicolors = true
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
 
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
