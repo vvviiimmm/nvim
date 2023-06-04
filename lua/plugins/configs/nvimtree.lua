@@ -2,7 +2,6 @@ return function()
   local ops = {
     filters = {
       dotfiles = false,
-      exclude = { vim.fn.stdpath "config" .. "/lua/custom" },
     },
     disable_netrw = true,
     hijack_netrw = true,
@@ -26,6 +25,7 @@ return function()
     },
     filesystem_watchers = {
       enable = true,
+      ignore_dirs = { ".git", "node_modules", ".cache", "target" },
     },
     actions = {
       open_file = {
@@ -45,7 +45,7 @@ return function()
         show = {
           file = true,
           folder = true,
-          -- folder_arrow = true,
+          folder_arrow = true,
           git = false,
         },
         -- glyphs = {
@@ -72,7 +72,7 @@ return function()
         --   },
         -- },
       },
-   slaeasljj },
+    },
   }
 
   require("nvim-tree").setup(ops)
