@@ -10,6 +10,26 @@ g.loaded_netrwPlugin = 1
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
 
+--Set completeopt to have a better completion experience
+-- :help completeopt
+-- menuone: popup even when there's only one match
+-- noinsert: Do not insert text until a selection is made
+-- noselect: Do not select, force to select one from the menu
+-- shortness: avoid showing extra messages when using completion
+-- updatetime: set updatetime for CursorHold
+vim.opt.completeopt = {'menuone', 'noselect', 'noinsert'}
+vim.opt.shortmess = vim.opt.shortmess + { c = true}
+vim.api.nvim_set_option('updatetime', 300) 
+
+-- Fixed column for diagnostics to appear
+-- Show autodiagnostic popup on cursor hover_range
+-- Goto previous / next diagnostic warning / error 
+-- Show inlay_hints more frequently 
+vim.cmd([[
+set signcolumn=yes
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+]])
+
 -- Indenting
 opt.expandtab = true
 opt.shiftwidth = 2
@@ -48,6 +68,9 @@ g.mapleader = " "
 
 vim.api.nvim_set_keymap('n', '<C-S>', ':w<CR>', { noremap = true })
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true })
+
+-- move between buffers
+vim.api.nvim_set_keymap('n', '<S-Tab>', '<C-^>', { noremap = true })
 
 -- move to mappings
 --g.copilot_no_tab_map = true

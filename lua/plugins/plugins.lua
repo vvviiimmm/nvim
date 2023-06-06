@@ -66,6 +66,7 @@ local plugins = {
       {"<leader>fa", "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", desc = "find all" },
       {"<leader>fw", "<cmd> Telescope live_grep <CR>", desc = "live grep" },
       {"<leader>fb", "<cmd> Telescope buffers <CR>", desc = "find buffers" },
+      {"<C-Tab>", "<cmd> Telescope buffers <CR>", desc = "find buffers" },
       {"<leader>fh", "<cmd> Telescope help_tags <CR>", desc = "help page" },
       {"<leader>fo", "<cmd> Telescope oldfiles <CR>", desc = "find oldfiles" },
       {"<leader>tk", "<cmd> Telescope keymaps <CR>", desc = "show keys" },
@@ -76,10 +77,28 @@ local plugins = {
       {"<leader>cm", "<cmd> Telescope git_commits <CR>", desc = "git commits" },
       {"<leader>gt", "<cmd> Telescope git_status <CR>", desc = "git status" },
 
-      -- pick a hidden term
-      {"<leader>pt", "<cmd> Telescope terms <CR>", desc = "pick hidden term" },
+      -- telescope lsp
+      {"<leader>fr", "<cmd> Telescope lps_references <CR>", desc = "references" },
     },
     config = require("plugins.configs.telescope")
+  },
+
+  {
+    "neovim/nvim-lspconfig",
+    keys = {
+      {"<leader>gd", "<cmd> lua vim.lsp.buf.definition() <CR>", desc = "go to definition"},
+      {"<leader>gD", "<cmd> lua vim.lsp.buf.declaration() <CR>", desc = "go to declaration"}, 
+      {"<leader>gr", "<cmd> lua vim.lsp.buf.references() <CR>", desc = "go to references"}, 
+      {"<leader>gd", "<cmd> lua vim.lsp.buf.implementation() <CR>", desc = "go to implementation"}, 
+      {"<leader>rn", "<cmd> lua vim.lsp.buf.rename() <CR>", desc = "rename"}, 
+      {"<leader>ca", "<cmd> lua vim.lsp.buf.code_action() <CR>", desc = "code action"}, 
+      {"<leader>h", "<cmd> lua vim.lsp.buf.hover() <CR>", desc = "hover"}, 
+      -- {"<leader>wa", "<cmd> lua vim.lsp.buf.add_workspace_folder() <CR>", desc = "add workspace folder"}, 
+      -- {"<leader>wr", "<cmd> lua vim.lsp.buf.remove_workspace_folder() <CR>", desc = "remove workspace folder"}, 
+      -- {"<leader>wl", "<cmd> lua print(vim.inspect(vim.lsp.buf.list_workspace_folders())) <CR>", desc = "list workspace folders"}, 
+      {"<leader>D", "<cmd> lua vim.lsp.buf.type_definition() <CR>", desc = "type definition"}, 
+      -- signature_help
+    }
   },
 
   {
@@ -91,9 +110,7 @@ local plugins = {
   { 
     "nvim-tree/nvim-web-devicons", 
     lazy = true 
-  },
-
-  {
+  }, {
     "mg979/vim-visual-multi",
     lazy = false
   },
@@ -104,6 +121,7 @@ local plugins = {
     'github/copilot.vim',
     lazy = false,
     keys = {
+      -- suggest
     },
   },
 
@@ -128,24 +146,6 @@ local plugins = {
   },
 
   {
-    "neovim/nvim-lspconfig",
-    keys = {
-      -- "<leader>gd", "<cmd> lua vim.lsp.buf.definition() <CR>", desc = "go to definition",
-      {"<leader>gD", "<cmd> lua vim.lsp.buf.declaration() <CR>", desc = "go to declaration"}, 
-      {"<leader>gr", "<cmd> lua vim.lsp.buf.references() <CR>", desc = "go to references"}, 
-      {"<leader>gd", "<cmd> lua vim.lsp.buf.implementation() <CR>", desc = "go to implementation"}, 
-      {"<leader>rn", "<cmd> lua vim.lsp.buf.rename() <CR>", desc = "rename"}, 
-      {"<leader>ca", "<cmd> lua vim.lsp.buf.code_action() <CR>", desc = "code action"}, 
-      {"<leader>h", "<cmd> lua vim.lsp.buf.hover() <CR>", desc = "hover"}, 
-      -- {"<leader>wa", "<cmd> lua vim.lsp.buf.add_workspace_folder() <CR>", desc = "add workspace folder"}, 
-      -- {"<leader>wr", "<cmd> lua vim.lsp.buf.remove_workspace_folder() <CR>", desc = "remove workspace folder"}, 
-      -- {"<leader>wl", "<cmd> lua print(vim.inspect(vim.lsp.buf.list_workspace_folders())) <CR>", desc = "list workspace folders"}, 
-      {"<leader>D", "<cmd> lua vim.lsp.buf.type_definition() <CR>", desc = "type definition"}, 
-      -- signature_help
-    }
-  },
-
-  {
     "simrat39/rust-tools.nvim",
     opts = require("plugins.configs.rust-tools")
   },
@@ -167,6 +167,26 @@ local plugins = {
 
   -- LSP completion source:
   { 'hrsh7th/cmp-nvim-lsp',
+  },
+
+  -- illuminate
+  {
+    'RRethy/vim-illuminate',
+    config = require("plugins.configs.illuminate")
+  },
+
+  -- autopair
+  {
+    'windwp/nvim-autopairs',
+    opts = {}
+  },
+
+  { "lukas-reineke/indent-blankline.nvim" },
+
+  -- visual
+  {
+    'nvim-lualine/lualine.nvim',
+    opts = {}
   },
 
   -- Useful completion sources:
