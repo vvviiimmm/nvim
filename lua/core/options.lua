@@ -68,6 +68,8 @@ g.mapleader = " "
 
 vim.api.nvim_set_keymap('n', '<C-S>', ':w<CR>', { noremap = true })
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<Leader>,', ':nohlsearch<CR>', { silent = true })
 
 -- move between buffers
 vim.api.nvim_set_keymap('n', '<S-Tab>', '<C-^>', { noremap = true })

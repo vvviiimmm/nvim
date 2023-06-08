@@ -78,7 +78,14 @@ local plugins = {
       {"<leader>gt", "<cmd> Telescope git_status <CR>", desc = "git status" },
 
       -- telescope lsp
-      {"<leader>fr", "<cmd> Telescope lps_references <CR>", desc = "references" },
+      {"<leader>fr", "<cmd> Telescope lsp_references <CR>", desc = "references" },
+      {"<leader>ft", "<cmd> Telescope lsp_type_definitions <CR>", desc = "type definitions" },
+      {"<leader>fd", "<cmd> Telescope lsp_definitions <CR>", desc = "definitions" },
+      {"<leader>fs", "<cmd> Telescope lsp_document_symbols <CR>", desc = "document symbols" },
+      {"<leader>fo", "<cmd> Telescope lsp_implementations <CR>", desc = "implementations" },
+      {"<leader>fn", "<cmd> Telescope lsp_incoming_calls <CR>", desc = "incoming calls" },
+      {"<leader>fm", "<cmd> Telescope lsp_outgoing_calls <CR>", desc = "outgoing calls" },
+      
     },
     config = require("plugins.configs.telescope")
   },
@@ -87,16 +94,16 @@ local plugins = {
     "neovim/nvim-lspconfig",
     keys = {
       {"<leader>gd", "<cmd> lua vim.lsp.buf.definition() <CR>", desc = "go to definition"},
-      {"<leader>gD", "<cmd> lua vim.lsp.buf.declaration() <CR>", desc = "go to declaration"}, 
+      {"<leader>gg", "<cmd> lua vim.lsp.buf.declaration() <CR>", desc = "go to declaration"}, 
       {"<leader>gr", "<cmd> lua vim.lsp.buf.references() <CR>", desc = "go to references"}, 
-      {"<leader>gd", "<cmd> lua vim.lsp.buf.implementation() <CR>", desc = "go to implementation"}, 
+      {"<leader>gi", "<cmd> lua vim.lsp.buf.implementation() <CR>", desc = "go to implementation"}, 
       {"<leader>rn", "<cmd> lua vim.lsp.buf.rename() <CR>", desc = "rename"}, 
       {"<leader>ca", "<cmd> lua vim.lsp.buf.code_action() <CR>", desc = "code action"}, 
       {"<leader>h", "<cmd> lua vim.lsp.buf.hover() <CR>", desc = "hover"}, 
       -- {"<leader>wa", "<cmd> lua vim.lsp.buf.add_workspace_folder() <CR>", desc = "add workspace folder"}, 
       -- {"<leader>wr", "<cmd> lua vim.lsp.buf.remove_workspace_folder() <CR>", desc = "remove workspace folder"}, 
       -- {"<leader>wl", "<cmd> lua print(vim.inspect(vim.lsp.buf.list_workspace_folders())) <CR>", desc = "list workspace folders"}, 
-      {"<leader>D", "<cmd> lua vim.lsp.buf.type_definition() <CR>", desc = "type definition"}, 
+      -- {"<leader>D", "<cmd> lua vim.lsp.buf.type_definition() <CR>", desc = "type definition"}, 
       -- signature_help
     }
   },
@@ -172,7 +179,8 @@ local plugins = {
   -- illuminate
   {
     'RRethy/vim-illuminate',
-    config = require("plugins.configs.illuminate")
+    config = require("plugins.configs.illuminate"),
+    enabled = false,
   },
 
   -- autopair
