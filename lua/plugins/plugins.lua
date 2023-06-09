@@ -210,6 +210,34 @@ local plugins = {
   },                            
   { 'hrsh7th/vim-vsnip',
   },
+
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+
+    },
+  },        
+
+  {
+    'tpope/vim-surround',
+    config = function()
+      vim.g.surround_mappings_style = "surround"
+    end
+  },
+
+  {
+    'voldikss/vim-floaterm',
+    keys = {
+      {"<leader>tt", "<cmd> FloatermToggle <CR>", desc = "toggle terminal"},
+      {"<leader>tn", "<cmd> FloatermNew <CR>", desc = "new terminal"},
+      {"<leader>tg", "<cmd> FloatermNew --disposable lazygit <CR>", desc = "lazy git"},
+      {"<leader>q", "<C-\\><C-n>:q<CR>", mode = "t", desc = "close terminal"},
+    },
+    config = function()
+
+    end
+  }
 }
 
 local opts = {}
