@@ -52,7 +52,9 @@ return function()
 
     extensions_list = { "themes", "terms" },
   }
-
-  require('telescope').setup(opts)
+  
+  local telescope = require("telescope")
+  telescope.setup(opts)
+  telescope.extensions.aerial.aerial()
 
 end

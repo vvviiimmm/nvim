@@ -71,7 +71,6 @@ local plugins = {
       {"<leader>fo", "<cmd> Telescope oldfiles <CR>", desc = "find oldfiles" },
       {"<leader>tk", "<cmd> Telescope keymaps <CR>", desc = "show keys" },
       {"<leader>fi", "<cmd> Telescope grep_string <CR>", desc = "search word under the cursor" },
-      {"<leader>tk", "<cmd> Telescope keymaps <CR>", desc = "show keys" },
 
       -- git
       {"<leader>cm", "<cmd> Telescope git_commits <CR>", desc = "git commits" },
@@ -81,11 +80,13 @@ local plugins = {
       {"<leader>fr", "<cmd> Telescope lsp_references <CR>", desc = "references" },
       {"<leader>ft", "<cmd> Telescope lsp_type_definitions <CR>", desc = "type definitions" },
       {"<leader>fd", "<cmd> Telescope lsp_definitions <CR>", desc = "definitions" },
-      {"<leader>fs", "<cmd> Telescope lsp_document_symbols <CR>", desc = "document symbols" },
+      -- {"<leader>fs", "<cmd> Telescope lsp_document_symbols <CR>", desc = "document symbols" },
       {"<leader>fo", "<cmd> Telescope lsp_implementations <CR>", desc = "implementations" },
       {"<leader>fn", "<cmd> Telescope lsp_incoming_calls <CR>", desc = "incoming calls" },
       {"<leader>fm", "<cmd> Telescope lsp_outgoing_calls <CR>", desc = "outgoing calls" },
-      
+      { "<leader>fq", "<cmd> Telescope quickfix <CR>", desc = "quickfix" },
+
+      {"<leader>fs", "<cmd> Telescope aerial <CR>", desc = "document symbols" },
     },
     config = require("plugins.configs.telescope")
   },
@@ -194,7 +195,7 @@ local plugins = {
   -- visual
   {
     'nvim-lualine/lualine.nvim',
-    opts = {}
+    opts = require("plugins.configs.lualine")
   },
 
   -- Useful completion sources:
@@ -214,6 +215,9 @@ local plugins = {
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    keys = {
+      {"<leader>y", "<cmd> TroubleToggle <CR>", desc = "toggle troble"},
+    },
     opts = {
 
     },
@@ -232,12 +236,55 @@ local plugins = {
       {"<leader>tt", "<cmd> FloatermToggle <CR>", desc = "toggle terminal"},
       {"<leader>tn", "<cmd> FloatermNew <CR>", desc = "new terminal"},
       {"<leader>tg", "<cmd> FloatermNew --disposable lazygit <CR>", desc = "lazy git"},
-      {"<leader>q", "<C-\\><C-n>:q<CR>", mode = "t", desc = "close terminal"},
+      {"<Esc><Esc>", "<C-\\><C-n>:q<CR>", mode = "t", desc = "close terminal"},
     },
     config = function()
 
     end
-  }
+  },
+
+  {
+    'akinsho/bufferline.nvim',
+    keys = {
+      -- ctrl tab to cycle next
+      { "<C-Tab>", "<cmd>BufferLineCycleNext<CR>", desc = "next buffer"},
+      { "<C-S-Tab>", "<cmd>BufferLineCyclePrev<CR>", desc = "prev buffer"},
+    },
+    lazy = false,
+    opts = {}
+  },
+
+  {
+    'stevearc/aerial.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    },
+    keys = {
+      {"<leader>ll", "<cmd> AerialToggle<CR>", desc = "toggle aerial"},
+    },
+  },
+
+  {
+    'lewis6991/gitsigns.nvim',
+    opts = {}
+  },
+
+  {
+    'nvimdev/lspsaga.nvim',
+    config = require("plugins.configs.lspsaga"),
+  },
+
+  -- {
+  --   'scalameta/nvim-metals',
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     -- "nvim-lua/popup.nvim",
+  --   },
+  --   config = function() end
+  -- }
 }
 
 local opts = {}
