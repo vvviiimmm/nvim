@@ -74,7 +74,7 @@ local plugins = {
 
       -- git
       {"<leader>cm", "<cmd> Telescope git_commits <CR>", desc = "git commits" },
-      {"<leader>gt", "<cmd> Telescope git_status <CR>", desc = "git status" },
+      -- {"<leader>gt", "<cmd> Telescope git_status <CR>", desc = "git status" },
 
       -- telescope lsp
       {"<leader>fr", "<cmd> Telescope lsp_references <CR>", desc = "references" },
@@ -99,7 +99,7 @@ local plugins = {
       {"<leader>gr", "<cmd> lua vim.lsp.buf.references() <CR>", desc = "go to references"}, 
       {"<leader>gi", "<cmd> lua vim.lsp.buf.implementation() <CR>", desc = "go to implementation"}, 
       {"<leader>rn", "<cmd> lua vim.lsp.buf.rename() <CR>", desc = "rename"}, 
-      {"<leader>ca", "<cmd> lua vim.lsp.buf.code_action() <CR>", desc = "code action"}, 
+      -- {"<leader>ca", "<cmd> lua vim.lsp.buf.code_action() <CR>", desc = "code action"}, 
       {"<leader>h", "<cmd> lua vim.lsp.buf.hover() <CR>", desc = "hover"}, 
       -- {"<leader>wa", "<cmd> lua vim.lsp.buf.add_workspace_folder() <CR>", desc = "add workspace folder"}, 
       -- {"<leader>wr", "<cmd> lua vim.lsp.buf.remove_workspace_folder() <CR>", desc = "remove workspace folder"}, 
@@ -269,13 +269,58 @@ local plugins = {
 
   {
     'lewis6991/gitsigns.nvim',
+    keys = {
+      -- {"<leader>gh", "<cmd> lua require('gitsigns').toggle_signs()<CR>", desc = "toggle gitsigns"},
+      -- {"<leader>gj", "<cmd> lua require('gitsigns').next_hunk()<CR>", desc = "next hunk"},
+      -- {"<leader>gk", "<cmd> lua require('gitsigns').prev_hunk()<CR>", desc = "prev hunk"},
+      -- {"<leader>gp", "<cmd> lua require('gitsigns').preview_hunk()<CR>", desc = "preview hunk"},
+      {"<leader>mb", "<cmd> Gitsigns blame_line <CR>", desc = "gitsigns: blame line"},
+      {"<leader>mm", "<cmd> Gitsigns toggle_signs <CR>", desc = "gitsigns: toggle"},
+      {"<leader>ml", "<cmd> Gitsigns toggle_linehl <CR>", desc = "gitsigns: toggle line highlight"},
+    },
     opts = {}
   },
 
   {
     'nvimdev/lspsaga.nvim',
+    keys = {
+      {"<leader>ca", "<cmd>Lspsaga code_action<CR>", desc = "lspsaga: code action"}, 
+      {"<leader>gd", "<cmd>Lspsaga goto_definition<CR>", desc = "lspsaga: goto definition"}, 
+      {"<leader>gt", "<cmd>Lspsaga peek_type_definition<CR>", desc = "lspsaga: peak type definition"}, 
+
+    },
     config = require("plugins.configs.lspsaga"),
   },
+
+  {
+    'arkav/lualine-lsp-progress',
+    config = function()
+      require("lualine").setup {
+        options = {
+          section_separators = "",
+          component_separators = "",
+        },
+        sections = {
+          lualine_c = {
+            {
+              "lsp_progress",
+              spinner_symbols = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+              -- spinner_symbols = { '🌑 ', '🌒 ', '🌓 ', '🌔 ', '🌕 ', '🌖 ', '🌗 ', '🌘 ' },
+              -- display_components = { 'lsp_client_name', { 'title', 'percentage', 'message' }},
+              display_components = { 'spinner', { 'title', 'percentage', 'message' } },
+            },
+          },
+        },
+      }
+    end
+  } 
+
+  -- {
+  --   'j-hui/fidget.nvim',
+  --   config = function()
+  --     require("fidget").setup()
+  --   end
+  -- }
 
   -- {
   --   'scalameta/nvim-metals',
