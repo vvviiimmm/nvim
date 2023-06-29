@@ -66,29 +66,28 @@ local plugins = {
       {"<leader>fa", "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", desc = "find all" },
       {"<leader>fw", "<cmd> Telescope live_grep <CR>", desc = "live grep" },
       {"<leader>fb", "<cmd> Telescope buffers <CR>", desc = "find buffers" },
-      {"<C-Tab>", "<cmd> Telescope buffers <CR>", desc = "find buffers" },
       {"<leader>fh", "<cmd> Telescope help_tags <CR>", desc = "help page" },
       {"<leader>fo", "<cmd> Telescope oldfiles <CR>", desc = "find oldfiles" },
       {"<leader>tk", "<cmd> Telescope keymaps <CR>", desc = "show keys" },
       {"<leader>fi", "<cmd> Telescope grep_string <CR>", desc = "search word under the cursor" },
 
-      -- git
-      {"<leader>cm", "<cmd> Telescope git_commits <CR>", desc = "git commits" },
+      -- git (deprecated, use lazygit)
+      -- {"<leader>cm", "<cmd> Telescope git_commits <CR>", desc = "git commits" },
       -- {"<leader>gt", "<cmd> Telescope git_status <CR>", desc = "git status" },
 
       -- telescope lsp
       {"<leader>fr", "<cmd> Telescope lsp_references <CR>", desc = "references" },
       {"<leader>ft", "<cmd> Telescope lsp_type_definitions <CR>", desc = "type definitions" },
       {"<leader>fd", "<cmd> Telescope lsp_definitions <CR>", desc = "definitions" },
-      -- {"<leader>fs", "<cmd> Telescope lsp_document_symbols <CR>", desc = "document symbols" },
-      {"<leader>fo", "<cmd> Telescope lsp_implementations <CR>", desc = "implementations" },
-      {"<leader>fn", "<cmd> Telescope lsp_incoming_calls <CR>", desc = "incoming calls" },
-      {"<leader>fm", "<cmd> Telescope lsp_outgoing_calls <CR>", desc = "outgoing calls" },
       { "<leader>fq", "<cmd> Telescope quickfix <CR>", desc = "quickfix" },
 
       {"<leader>fs", "<cmd> Telescope aerial <CR>", desc = "document symbols" },
     },
-    config = require("plugins.configs.telescope")
+    config = require("plugins.configs.telescope"),
+    dependencies = {
+      'stevearc/aerial.nvim',
+    }
+
   },
 
   {
@@ -256,7 +255,10 @@ local plugins = {
 
   {
     'stevearc/aerial.nvim',
-    opts = {},
+    opts = {
+      backends = { "treesitter", "lsp", "markdown", "man" },
+      lazy_load = true,
+    },
     -- Optional dependencies
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
@@ -284,9 +286,14 @@ local plugins = {
   {
     'nvimdev/lspsaga.nvim',
     keys = {
-      {"<leader>ca", "<cmd>Lspsaga code_action<CR>", desc = "lspsaga: code action"}, 
-      {"<leader>gd", "<cmd>Lspsaga goto_definition<CR>", desc = "lspsaga: goto definition"}, 
-      {"<leader>gt", "<cmd>Lspsaga peek_type_definition<CR>", desc = "lspsaga: peak type definition"}, 
+      {"<leader>ca", "<cmd>Lspsaga code_action<CR>", desc = "lspsaga: code action", mode = "n"}, 
+      {"<leader>sd", "<cmd>Lspsaga goto_definition<CR>", desc = "lspsaga: goto definition"}, 
+      {"<leader>st", "<cmd>Lspsaga peek_type_definition<CR>", desc = "lspsaga: peak type definition"}, 
+      {"<leader>sn", "<cmd>Lspsaga incoming_calls<CR>", desc = "lspsaga: incoming calls"}, 
+      {"<leader>sm", "<cmd>Lspsaga outgoing_calls<CR>", desc = "lspsaga: outgoing calls"}, 
+      {"<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>", desc = "lspsaga: buf diagnostics"}, 
+      {"<leader>sw", "<cmd>Lspsaga show_workspace_diagnostics<CR>", desc = "lspsaga: workspace diagnostics"}, 
+      {"<leader>ss", "<cmd>Lspsaga outline<CR>", desc = "lspsaga: outline"}, 
 
     },
     config = require("plugins.configs.lspsaga"),
