@@ -4,7 +4,7 @@ return function()
       vimgrep_arguments = {
         "rg",
         "-L",
-        "--color=never",
+        -- "--color=never",
         "--no-heading",
         "--with-filename",
         "--line-number",
@@ -48,6 +48,12 @@ return function()
       mappings = {
         n = { ["q"] = require("telescope.actions").close },
       },
+    },
+    pickers = {
+      buffers = {
+        sort_lastused = true,
+        ignore_current_buffer = true
+      }
     },
 
     extensions_list = { "themes", "terms" },
