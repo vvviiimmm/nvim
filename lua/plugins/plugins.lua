@@ -249,7 +249,11 @@ local plugins = {
       { "<leader>bh", "<cmd>BufferLineCyclePrev<CR>", desc = "bufferline: prev buffer"},
       { "<leader>bp", "<cmd>BufferLinePick<CR>", desc = "bufferline: pick"},
       { "<leader>br", "<cmd>BufferLineCloseRight<CR>", desc = "bufferline: close right"},
-      { "<leader>bq", "<cmd>:bdelete<CR>:bprev<CR>", desc = "bufferline: close left"},
+      { "<leader>bq", function() 
+        local current_buf = vim.api.nvim_get_current_buf()
+        vim.cmd [[b#]]
+        vim.api.nvim_buf_delete(current_buf, {force = true})
+      end, desc = "bufferline: close and go back"},
       { "<leader>bf", "<cmd>:bfirst<CR>", desc = "bufferline: goto first tab"},
     },
     lazy = false,
