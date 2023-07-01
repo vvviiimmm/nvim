@@ -4,7 +4,6 @@ return function()
       vimgrep_arguments = {
         "rg",
         "-L",
-        -- "--color=never",
         "--no-heading",
         "--with-filename",
         "--line-number",
@@ -51,8 +50,8 @@ return function()
     },
     pickers = {
       buffers = {
-        sort_lastused = true,
-        ignore_current_buffer = true
+        ignore_current_buffer = true,
+        sort_mru = true,
       }
     },
 
