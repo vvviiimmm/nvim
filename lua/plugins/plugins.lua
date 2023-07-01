@@ -54,7 +54,7 @@ local plugins = {
     "nvim-tree/nvim-tree.lua",
     keys = {
       {"<leader>e", "<cmd> NvimTreeFocus <CR>", desc = "focus nvimtree" },
-      {"<leader>b", "<cmd> NvimTreeToggle <CR>", desc = "toggle nvimtree" },
+      -- {"<leader>b", "<cmd> NvimTreeToggle <CR>", desc = "toggle nvimtree" },
     },
     config = require("plugins.configs.nvimtree")
   },
@@ -245,9 +245,12 @@ local plugins = {
   {
     'akinsho/bufferline.nvim',
     keys = {
-      -- ctrl tab to cycle next
-      { "<C-Tab>", "<cmd>BufferLineCycleNext<CR>", desc = "next buffer"},
-      { "<C-S-Tab>", "<cmd>BufferLineCyclePrev<CR>", desc = "prev buffer"},
+      { "<leader>bl", "<cmd>BufferLineCycleNext<CR>", desc = "bufferline: next buffer"},
+      { "<leader>bh", "<cmd>BufferLineCyclePrev<CR>", desc = "bufferline: prev buffer"},
+      { "<leader>bp", "<cmd>BufferLinePick<CR>", desc = "bufferline: pick"},
+      { "<leader>br", "<cmd>BufferLineCloseRight<CR>", desc = "bufferline: close right"},
+      { "<leader>bq", "<cmd>:bdelete<CR>:bprev<CR>", desc = "bufferline: close left"},
+      { "<leader>bf", "<cmd>:bfirst<CR>", desc = "bufferline: goto first tab"},
     },
     lazy = false,
     opts = {}
