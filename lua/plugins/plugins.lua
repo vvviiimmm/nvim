@@ -45,9 +45,7 @@ local plugins = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
     },
-    config = function()
-      -- ...
-    end,
+    config = require("plugins.configs.cmp")
   },
 
   {
@@ -154,12 +152,12 @@ local plugins = {
 
   {
     "simrat39/rust-tools.nvim",
-    opts = require("plugins.configs.rust-tools")
+    opts = require("plugins.configs.rust-tools"),
+    keys = {
+      {"<leader>rf","<cmd> :%! rustfmt <CR>", desc = "rustfmt" },
+    },
+    lazy = false
   },
-
-  { 'hrsh7th/nvim-cmp',
-    config = require("plugins.configs.cmp"),
-  }, 
 
   -- navigation
   {
@@ -251,7 +249,7 @@ local plugins = {
       { "<leader>br", "<cmd>BufferLineCloseRight<CR>", desc = "bufferline: close right"},
       { "<leader>bq", function() 
         local current_buf = vim.api.nvim_get_current_buf()
-        vim.cmd [[b#]]
+        vim.cmd [[bprevious]]
         vim.api.nvim_buf_delete(current_buf, {force = true})
       end, desc = "bufferline: close and go back"},
       { "<leader>bf", "<cmd>:bfirst<CR>", desc = "bufferline: goto first tab"},
@@ -301,6 +299,7 @@ local plugins = {
       {"<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>", desc = "lspsaga: buf diagnostics"}, 
       {"<leader>sw", "<cmd>Lspsaga show_workspace_diagnostics<CR>", desc = "lspsaga: workspace diagnostics"}, 
       {"<leader>ss", "<cmd>Lspsaga outline<CR>", desc = "lspsaga: outline"}, 
+      {"<leader>sp", "<cmd>Lspsaga peek_definition<CR>", desc = "lspsaga: peek definition"}, 
 
     },
     config = require("plugins.configs.lspsaga"),
@@ -327,7 +326,11 @@ local plugins = {
         },
       }
     end
-  } 
+  },
+
+  {
+    'puremourning/vimspector'
+  }
 
   -- {
   --   'j-hui/fidget.nvim',
