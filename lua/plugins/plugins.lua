@@ -164,6 +164,7 @@ local plugins = {
     'phaazon/hop.nvim',
     keys = {
       { "<leader>jj", "<cmd> HopWord <CR>", desc = "hop words"},
+      { "<leader>k", "<cmd> HopWord <CR>", desc = "hop words"},
       { "<leader>jl", "<cmd> HopLine <CR>", desc = "hop line"},
       { "<leader>ja", "<cmd> HopWordMW <CR>", desc = "hop word multi window"},
     },
@@ -330,10 +331,15 @@ local plugins = {
 
   {
     'puremourning/vimspector'
+  },
+
+  {
+    "shortcuts/no-neck-pain.nvim",
+    config = require("plugins.configs.no-neck-pain"),
   }
 
   -- {
-  --   'j-hui/fidget.nvim',
+  --   '-hui/fidget.nvim',
   --   config = function()
   --     require("fidget").setup()
   --   end
