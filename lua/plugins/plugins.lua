@@ -133,6 +133,8 @@ local plugins = {
   {
     'numToStr/Comment.nvim',
     keys = {
+        {"<leader><BS>", function() require("Comment.api").toggle.linewise.current() end, mode = "n", desc = "toggle comment" },
+        {"<leader><BS>",  "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", mode = "v", desc = "toggle comment" },
         {"<leader>/", function() require("Comment.api").toggle.linewise.current() end, mode = "n", desc = "toggle comment" },
         {"<leader>/",  "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", mode = "v", desc = "toggle comment" },
     },
@@ -168,7 +170,7 @@ local plugins = {
       { "<leader>jl", "<cmd> HopLine <CR>", desc = "hop line"},
       { "<leader>ja", "<cmd> HopWordMW <CR>", desc = "hop word multi window"},
     },
-    opts = {}
+    config = require("plugins.configs.hop"),
   },
 
   -- LSP completion source:
@@ -250,9 +252,9 @@ local plugins = {
       { "<leader>br", "<cmd>BufferLineCloseRight<CR>", desc = "bufferline: close right"},
       { "<leader>bq", function() 
         local current_buf = vim.api.nvim_get_current_buf()
-        vim.cmd [[bprevious]]
-        vim.api.nvim_buf_delete(current_buf, {force = true})
-      end, desc = "bufferline: close and go back"},
+          vim.cmd [[bprevious]]
+          vim.api.nvim_buf_delete(current_buf, {force = true})
+        end, desc = "bufferline: close and go back"},
       { "<leader>bf", "<cmd>:bfirst<CR>", desc = "bufferline: goto first tab"},
     },
     lazy = false,
@@ -335,7 +337,11 @@ local plugins = {
 
   {
     "shortcuts/no-neck-pain.nvim",
+    keys = {
+      {"<leader>nn", "<cmd> NoNeckPain <CR>", desc = "toggle no neck pain"},
+    },
     config = require("plugins.configs.no-neck-pain"),
+    lazy = false,
   }
 
   -- {
