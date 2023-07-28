@@ -154,7 +154,7 @@ local plugins = {
 
   {
     "simrat39/rust-tools.nvim",
-    opts = require("plugins.configs.rust-tools"),
+    config = require("plugins.configs.rust-tools"),
     keys = {
       {"<leader>rf","<cmd> :%! rustfmt <CR>", desc = "rustfmt" },
     },
@@ -280,13 +280,17 @@ local plugins = {
   {
     'lewis6991/gitsigns.nvim',
     keys = {
-      -- {"<leader>gh", "<cmd> lua require('gitsigns').toggle_signs()<CR>", desc = "toggle gitsigns"},
-      -- {"<leader>gj", "<cmd> lua require('gitsigns').next_hunk()<CR>", desc = "next hunk"},
-      -- {"<leader>gk", "<cmd> lua require('gitsigns').prev_hunk()<CR>", desc = "prev hunk"},
-      -- {"<leader>gp", "<cmd> lua require('gitsigns').preview_hunk()<CR>", desc = "preview hunk"},
       {"<leader>mb", "<cmd> Gitsigns blame_line <CR>", desc = "gitsigns: blame line"},
       {"<leader>mm", "<cmd> Gitsigns toggle_signs <CR>", desc = "gitsigns: toggle"},
       {"<leader>ml", "<cmd> Gitsigns toggle_linehl <CR>", desc = "gitsigns: toggle line highlight"},
+      {"<leader>mj", "<cmd> Gitsigns next_hunk <CR>", desc = "gitsigns: next hunk"},
+      {"<leader>mk", "<cmd> Gitsigns prev_hunk <CR>", desc = "gitsigns: prev hunk"},
+      {"<leader>mp", "<cmd> Gitsigns preview_hunk <CR>", desc = "gitsigns: preview hunk"},
+      {"<leader>mi", "<cmd> Gitsigns preview_hunk_inline <CR>", desc = "gitsigns: preview hunk inline"},
+      {"<leader>mr", "<cmd> Gitsigns reset_hunk <CR>", desc = "gitsigns: reset hunk"},
+      {"<leader>mu", "<cmd> Gitsigns reset_buffer <CR>", desc = "gitsigns: reset buffer"},
+      {"<leader>mc", "<cmd> Gitsigns toggle_current_line_blame <CR>", desc = "gitsigns: toggle blame"},
+      {"<leader>ms", "<cmd> Gitsigns setqflist <CR>", desc = "gitsigns: all changes in qf"},
     },
     opts = {}
   },
