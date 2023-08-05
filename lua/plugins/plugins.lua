@@ -165,9 +165,9 @@ local plugins = {
   {
     'phaazon/hop.nvim',
     keys = {
-      { "<leader>jj", "<cmd> HopWord <CR>", desc = "hop words"},
-      { "<leader>k", "<cmd> HopWord <CR>", desc = "hop words"},
-      { "<leader>jl", "<cmd> HopLine <CR>", desc = "hop line"},
+      { "<leader>jj", "<cmd> HopChar2 <CR>", mode = {"v", "n"}, desc = "hop char"},
+      { "<leader>k", "<cmd> HopWord <CR>", mode = { "v", "n"}, desc = "hop words"},
+      { "<leader>jl", "<cmd> HopLine <CR>", mode = { "v", "n"}, desc = "hop line"},
       { "<leader>ja", "<cmd> HopWordMW <CR>", desc = "hop word multi window"},
     },
     config = require("plugins.configs.hop"),
@@ -335,9 +335,9 @@ local plugins = {
     end
   },
 
-  {
-    'puremourning/vimspector'
-  },
+  -- {
+  --   'puremourning/vimspector'
+  -- },
 
   {
     "shortcuts/no-neck-pain.nvim",
@@ -346,7 +346,28 @@ local plugins = {
     },
     config = require("plugins.configs.no-neck-pain"),
     lazy = false,
-  }
+  },
+
+  -- {
+  --   'edluffy/specs.nvim',
+  --   opts = { 
+  --     show_jumps  = true,
+  --     min_jump = 30,
+  --     popup = {
+  --       delay_ms = 0, -- delay before popup displays
+  --       inc_ms = 10, -- time increments used for fade/resize effects 
+  --       blend = 10, -- starting blend, between 0-100 (fully transparent), see :h winblend
+  --       width = 10,
+  --       winhl = "PMenu",
+  --       fader = require('specs').linear_fader,
+  --       resizer = require('specs').shrink_resizer
+  --     },
+  --     ignore_filetypes = {},
+  --     ignore_buftypes = {
+  --       nofile = true,
+  --     },
+  --   }
+  -- }
 
   -- {
   --   '-hui/fidget.nvim',
