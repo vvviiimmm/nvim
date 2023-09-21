@@ -157,6 +157,7 @@ local plugins = {
     config = require("plugins.configs.rust-tools"),
     keys = {
       {"<leader>rf","<cmd> :%! rustfmt <CR>", desc = "rustfmt" },
+      {"<leader>rc","<cmd> RustOpenCargo <CR>" , desc = "rustfmt" },
     },
     lazy = false
   },

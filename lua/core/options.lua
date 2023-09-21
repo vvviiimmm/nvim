@@ -1,6 +1,8 @@
 local opt = vim.opt
 local g = vim.g
 
+vim.api.nvim_set_keymap('t', '<C-l>', '<C-\\><C-N>', { noremap = true, silent = true })
+
 vim.opt.formatoptions:remove({ 'c', 'r', 'o' })
 
 opt.laststatus = 3 -- global statusline
