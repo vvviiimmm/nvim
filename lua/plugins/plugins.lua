@@ -67,7 +67,7 @@ local plugins = {
       {"<leader>fh", "<cmd> Telescope help_tags <CR>", desc = "help page" },
       {"<leader>fo", "<cmd> Telescope oldfiles <CR>", desc = "find oldfiles" },
       {"<leader>tk", "<cmd> Telescope keymaps <CR>", desc = "show keys" },
-      {"<leader>fi", "<cmd> Telescope grep_string <CR>", desc = "search word under the cursor" },
+      {"<leader>fi", "<cmd> Telescope grep_string hidden=true <CR>", desc = "search word under the cursor" },
 
       -- git (deprecated, use lazygit)
       -- {"<leader>cm", "<cmd> Telescope git_commits <CR>", desc = "git commits" },
@@ -157,7 +157,7 @@ local plugins = {
     config = require("plugins.configs.rust-tools"),
     keys = {
       {"<leader>rf","<cmd> :%! rustfmt <CR>", desc = "rustfmt" },
-      {"<leader>rc","<cmd> RustOpenCargo <CR>" , desc = "rustfmt" },
+      {"<leader>rc","<cmd> RustOpenCargo <CR>" , desc = "open cargo" },
     },
     lazy = false
   },
@@ -308,6 +308,7 @@ local plugins = {
       {"<leader>sw", "<cmd>Lspsaga show_workspace_diagnostics<CR>", desc = "lspsaga: workspace diagnostics"}, 
       {"<leader>ss", "<cmd>Lspsaga outline<CR>", desc = "lspsaga: outline"}, 
       {"<leader>sp", "<cmd>Lspsaga peek_definition<CR>", desc = "lspsaga: peek definition"}, 
+      {"<leader>sr", "<cmd>Lspsaga rename<CR>", desc = "lsp saga: rename"}, 
 
     },
     config = require("plugins.configs.lspsaga"),
@@ -377,14 +378,21 @@ local plugins = {
   --   end
   -- }
 
-  -- {
-  --   'scalameta/nvim-metals',
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     -- "nvim-lua/popup.nvim",
-  --   },
-  --   config = function() end
-  -- }
+  {
+    'scalameta/nvim-metals',
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      -- "nvim-lua/popup.nvim",
+    },
+    config = function()
+      local metals_config = require("metals").bare_config()
+
+      metals_config.settings = {
+        showImplicitArguments = true,
+        excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
+      }
+    end
+  }
 }
 
 local opts = {}
