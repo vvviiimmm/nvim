@@ -80,6 +80,7 @@ local plugins = {
       { "<leader>fq", "<cmd> Telescope quickfix <CR>", desc = "quickfix" },
 
       {"<leader>fs", "<cmd> Telescope aerial <CR>", desc = "document symbols" },
+      {"<leader>fe", "<cmd> Telescope resume <CR>", desc = "telescope resume" },
     },
     config = require("plugins.configs.telescope"),
     dependencies = {
