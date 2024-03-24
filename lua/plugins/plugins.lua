@@ -46,7 +46,7 @@ local plugins = {
       "hrsh7th/cmp-buffer",
     },
     config = require("plugins.configs.cmp")
-  },
+ },
 
   {
     "nvim-tree/nvim-tree.lua",
@@ -81,6 +81,7 @@ local plugins = {
 
       {"<leader>fs", "<cmd> Telescope aerial <CR>", desc = "document symbols" },
       {"<leader>fe", "<cmd> Telescope resume <CR>", desc = "telescope resume" },
+      {"<leader>fg", "<cmd> Telescope git_status <CR>", desc = "git status" },
     },
     config = require("plugins.configs.telescope"),
     dependencies = {
@@ -267,7 +268,7 @@ local plugins = {
     'stevearc/aerial.nvim',
     opts = {
       backends = { "treesitter", "lsp", "markdown", "man" },
-      lazy_load = true,
+      lazy_load = false,
     },
     -- Optional dependencies
     dependencies = {
@@ -393,6 +394,18 @@ local plugins = {
         excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
       }
     end
+  },
+
+  {
+    -- 'sindrets/diffview.nvim'
+    -- 'vvviiimmm/diffview.nvim'
+    dir = '~/dev/sandbox/diffview.nvim',
+    lazy = false,
+  },
+
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
   }
 }
 
