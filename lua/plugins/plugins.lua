@@ -405,7 +405,11 @@ local plugins = {
 
   {
     "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    keys = {
+      {"<leader>dvo", "<cmd> DiffviewOpen <CR>", desc = "open diff view"},
+      {"<leader>dvc", "<cmd> DiffviewClose <CR>", desc = "close diff view"},
+    },
   }
 }
 
