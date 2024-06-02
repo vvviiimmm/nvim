@@ -76,6 +76,14 @@ vim.api.nvim_set_keymap('n', '[', '{', {noremap = true, silent = true})
 -- move between buffers
 vim.api.nvim_set_keymap('n', '<S-Tab>', '<C-^>', { noremap = true })
 
+function copy_file_path()
+  local filepath = vim.fn.expand('%:p')
+  vim.fn.setreg('+', filepath)
+end
+
+-- copy filename to buffer
+vim.api.nvim_set_keymap('n', '<C-T>', ':let @+ = expand(\'%:p\')<CR>', { noremap = true })
+
 
 -- move to mappings
 --g.copilot_no_tab_map = true
