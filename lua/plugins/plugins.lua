@@ -303,14 +303,15 @@ local plugins = {
     keys = {
       {"<leader>ca", "<cmd>Lspsaga code_action<CR>", desc = "lspsaga: code action", mode = "n"}, 
       {"<leader>sd", "<cmd>Lspsaga goto_definition<CR>", desc = "lspsaga: goto definition"}, 
-      {"<leader>st", "<cmd>Lspsaga peek_type_definition<CR>", desc = "lspsaga: peak type definition"}, 
       {"<leader>sn", "<cmd>Lspsaga incoming_calls<CR>", desc = "lspsaga: incoming calls"}, 
       {"<leader>sm", "<cmd>Lspsaga outgoing_calls<CR>", desc = "lspsaga: outgoing calls"}, 
       {"<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>", desc = "lspsaga: buf diagnostics"}, 
+      {"<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "lspsaga: line diagnostics"}, 
       {"<leader>sw", "<cmd>Lspsaga show_workspace_diagnostics<CR>", desc = "lspsaga: workspace diagnostics"}, 
       {"<leader>ss", "<cmd>Lspsaga outline<CR>", desc = "lspsaga: outline"}, 
       {"<leader>sp", "<cmd>Lspsaga peek_definition<CR>", desc = "lspsaga: peek definition"}, 
       {"<leader>sr", "<cmd>Lspsaga rename<CR>", desc = "lsp saga: rename"}, 
+      {"<leader>sh", "<cmd>Lspsaga hover_doc<CR>", desc = "lsp saga: hover doc"}, 
 
     },
     config = require("plugins.configs.lspsaga"),
@@ -410,6 +411,23 @@ local plugins = {
       {"<leader>dvo", "<cmd> DiffviewOpen <CR>", desc = "open diff view"},
       {"<leader>dvc", "<cmd> DiffviewClose <CR>", desc = "close diff view"},
     },
+  },
+
+  { 
+    "folke/neodev.nvim", 
+    opts = {},
+    config = function()
+      require("neodev").setup()
+    end
+  },
+
+  {
+    dir = "/Users/vi/dev/sandbox/nvim/helloplugin/",
+    name = "helloplugin",
+    config = function()
+      require("scratch_buffer")
+    end,
+    lazy = false,
   }
 }
 
