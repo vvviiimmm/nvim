@@ -238,11 +238,22 @@ local plugins = {
     keys = {
       {"<leader>tt", "<cmd> FloatermToggle <CR>", desc = "toggle terminal"},
       {"<leader>tn", "<cmd> FloatermNew <CR>", desc = "new terminal"},
+      {"<leader>ty", "<cmd> FloatermSend !! <CR> | <cmd> FloatermShow <CR>", desc = "new terminal"},
+      {"<leader>ty", function() 
+        vim.cmd("write")
+        vim.cmd("FloatermSend !!")
+        vim.schedule(function()
+            vim.cmd("FloatermShow")
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", false)
+        end)
+      end, desc = "new terminal"},
+      {"<leader>tn", function()  end, desc = "new terminal"},
       {"<leader>tg", "<cmd> FloatermNew --disposable lazygit <CR>", desc = "lazy git"},
       {"<Esc><Esc>", "<C-\\><C-n>:q<CR>", mode = "t", desc = "close terminal"},
     },
     config = function()
-
+      vim.g.floaterm_width = 0.9
+      vim.g.floaterm_width = 0.8
     end
   },
 
