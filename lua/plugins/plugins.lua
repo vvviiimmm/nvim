@@ -51,8 +51,9 @@ local plugins = {
   {
     "nvim-tree/nvim-tree.lua",
     keys = {
+      -- {"<leader>e", "<cmd> NvimTreeFocus <CR>", desc = "focus nvimtree" },
       {"<leader>e", "<cmd> NvimTreeFocus <CR>", desc = "focus nvimtree" },
-      -- {"<leader>b", "<cmd> NvimTreeToggle <CR>", desc = "toggle nvimtree" },
+      {"<leader>ee", "<cmd> NvimTreeToggle <CR>", desc = "toggle nvimtree" },
     },
     config = require("plugins.configs.nvimtree")
   },
@@ -413,15 +414,15 @@ local plugins = {
     -- 'vvviiimmm/diffview.nvim'
     dir = '~/dev/sandbox/diffview.nvim',
     lazy = false,
+    keys = {
+      {"<leader>dvo", "<cmd> DiffviewOpen <CR>", desc = "open diff view"},
+      {"<leader>dvc", "<cmd> DiffviewClose <CR>", desc = "close diff view"},
+    },
   },
 
   {
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-    keys = {
-      {"<leader>dvo", "<cmd> DiffviewOpen <CR>", desc = "open diff view"},
-      {"<leader>dvc", "<cmd> DiffviewClose <CR>", desc = "close diff view"},
-    },
   },
 
   { 
