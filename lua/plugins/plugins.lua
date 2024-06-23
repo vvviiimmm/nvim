@@ -155,14 +155,20 @@ local plugins = {
     opts = {}
   },
 
+  -- {
+  --   "simrat39/rust-tools.nvim",
+  --   config = require("plugins.configs.rust-tools"),
+  --   keys = {
+  --     {"<leader>rf","<cmd> :%! rustfmt <CR>", desc = "rustfmt" },
+  --     {"<leader>rc","<cmd> RustOpenCargo <CR>" , desc = "open cargo" },
+  --   },
+  --   lazy = false
+  -- },
+
   {
-    "simrat39/rust-tools.nvim",
-    config = require("plugins.configs.rust-tools"),
-    keys = {
-      {"<leader>rf","<cmd> :%! rustfmt <CR>", desc = "rustfmt" },
-      {"<leader>rc","<cmd> RustOpenCargo <CR>" , desc = "open cargo" },
-    },
-    lazy = false
+    'mrcjkb/rustaceanvim',
+    version = '^4',
+    lazy = false,
   },
 
   -- navigation
