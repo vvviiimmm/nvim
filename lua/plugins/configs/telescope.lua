@@ -113,5 +113,6 @@ return function()
   local telescope = require("telescope")
   telescope.setup(opts)
   -- telescope.extensions.aerial.aerial()
+  telescope.load_extension("live_grep_args")
 
 end
