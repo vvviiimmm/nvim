@@ -83,6 +83,7 @@ local plugins = {
       {"<leader>fs", "<cmd> Telescope aerial <CR>", desc = "document symbols" },
       {"<leader>fe", "<cmd> Telescope resume <CR>", desc = "telescope resume" },
       {"<leader>fg", "<cmd> Telescope git_status <CR>", desc = "git status" },
+      {"<leader>fz", "<cmd> Telescope current_buffer_fuzzy_find <CR>", desc = "current buffer fuzzy" },
     },
     config = require("plugins.configs.telescope"),
     dependencies = {
@@ -465,6 +466,12 @@ local plugins = {
       { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
       { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+    },
+  },
+  {
+    "nvim-pack/nvim-spectre",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
     },
   }
 }
