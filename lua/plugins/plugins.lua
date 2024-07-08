@@ -473,6 +473,10 @@ local plugins = {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
+    keys = {
+      { "<leader>lz", "<cmd>lua require('spectre').open_file_search({select_word=true})<CR>", desc = "Spectre search on current file" },
+      { "<leader>li", "<cmd>lua require('spectre').open_visual()<CR>", desc = "Search current word", mode = "v" },
+    }
   }
 }
 
