@@ -70,10 +70,6 @@ local plugins = {
       {"<leader>tk", "<cmd> Telescope keymaps <CR>", desc = "show keys" },
       {"<leader>fi", "<cmd> Telescope grep_string hidden=true <CR>", desc = "search word under the cursor" },
 
-      -- git (deprecated, use lazygit)
-      -- {"<leader>cm", "<cmd> Telescope git_commits <CR>", desc = "git commits" },
-      -- {"<leader>gt", "<cmd> Telescope git_status <CR>", desc = "git status" },
-
       -- telescope lsp
       {"<leader>fr", "<cmd> Telescope lsp_references <CR>", desc = "references" },
       {"<leader>ft", "<cmd> Telescope lsp_type_definitions <CR>", desc = "type definitions" },
@@ -84,6 +80,19 @@ local plugins = {
       {"<leader>fe", "<cmd> Telescope resume <CR>", desc = "telescope resume" },
       {"<leader>fg", "<cmd> Telescope git_status <CR>", desc = "git status" },
       {"<leader>fz", "<cmd> Telescope current_buffer_fuzzy_find <CR>", desc = "current buffer fuzzy" },
+      {
+        "<leader>fl", 
+        function()
+          local api = require("nvim-tree.api")
+          local node = api.tree.get_node_under_cursor()
+          if node and node.absolute_path then
+            require("telescope.builtin").live_grep({ search_dirs = { node.absolute_path } })
+          else
+            print("No directory selected in nvim-tree")
+          end
+        end,
+        desc = "live grep in nvim-tree folder"
+      },
     },
     config = require("plugins.configs.telescope"),
     dependencies = {
