@@ -80,6 +80,7 @@ local plugins = {
       {"<leader>fe", "<cmd> Telescope resume <CR>", desc = "telescope resume" },
       {"<leader>fg", "<cmd> Telescope git_status <CR>", desc = "git status" },
       {"<leader>fz", "<cmd> Telescope current_buffer_fuzzy_find <CR>", desc = "current buffer fuzzy" },
+      {"<leader>fn", "<cmd> Telescope live_grep_args<CR>", desc = "find exact" },
       {
         "<leader>fl", 
         function()
