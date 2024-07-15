@@ -157,6 +157,7 @@ local plugins = {
         {"<leader><BS>",  "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", mode = "v", desc = "toggle comment" },
         {"<leader>/", function() require("Comment.api").toggle.linewise.current() end, mode = "n", desc = "toggle comment" },
         {"<leader>/",  "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", mode = "v", desc = "toggle comment" },
+        {"<leader>o", function() require("utils").yank_paste_comment()  end, mode = "v", desc = "yank paste" },
     },
     opts = {}
   },
