@@ -15,7 +15,7 @@ return function()
     },
     view = {
       adaptive_size = true,
-      side = "left",
+      side = "right",
       width = 25,
       -- hide_root_folder = true,
     },

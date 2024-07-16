@@ -277,8 +277,8 @@ local plugins = {
       {"<Esc><Esc>", "<C-\\><C-n>:q<CR>", mode = "t", desc = "close terminal"},
     },
     config = function()
-      vim.g.floaterm_width = 0.9
-      vim.g.floaterm_width = 0.8
+      vim.g.floaterm_width = 0.7
+      vim.g.floaterm_width = 0.7
     end
   },
 
@@ -379,15 +379,7 @@ local plugins = {
   -- {
   --   'puremourning/vimspector'
   -- },
-
-  {
-    "shortcuts/no-neck-pain.nvim",
-    keys = {
-      {"<leader>nn", "<cmd> NoNeckPain <CR>", desc = "toggle no neck pain"},
-    },
-    config = require("plugins.configs.no-neck-pain"),
-    lazy = false,
-  },
+  -- ,
 
   -- {
   --   'edluffy/specs.nvim',
@@ -487,6 +479,14 @@ local plugins = {
     keys = {
       { "<leader>lz", "<cmd>lua require('spectre').open_file_search({select_word=true})<CR>", desc = "Spectre search on current file" },
       { "<leader>li", "<cmd>lua require('spectre').open_visual()<CR>", desc = "Search current word", mode = "v" },
+    }
+  },
+  {
+    "folke/zen-mode.nvim",
+    opts = {
+    },
+    keys = {
+      { "<leader>nn", "<cmd>ZenMode<CR>", desc = "Zen mode" }
     }
   }
 }
