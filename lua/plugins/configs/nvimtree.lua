@@ -15,9 +15,19 @@ return function()
     },
     view = {
       adaptive_size = true,
-      side = "right",
-      width = 25,
+      -- side = "right",
+      -- width = 25,
       -- hide_root_folder = true,
+      float = {
+        enable = true,
+        open_win_config ={
+          width = 25,
+          height = 50,
+          row = 1,
+          col = 1,
+          relative = "cursor"
+        }
+      },
     },
     git = {
       enable = false,
