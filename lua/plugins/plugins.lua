@@ -488,6 +488,15 @@ local plugins = {
     keys = {
       { "<leader>nn", "<cmd>ZenMode<CR>", desc = "Zen mode" }
     }
+  },
+  {
+    "MunifTanjim/nui.nvim"
+  },
+  {
+    "julienvincent/hunk.nvim",
+    cmd = { "DiffEditor" },
+    dependencies = { "MunifTanjim/nui.nvim" },
+    config = require("plugins.configs.hunk"),
   }
 }
 
