@@ -115,7 +115,6 @@ local plugins = {
       {"<leader>gg", "<cmd> lua vim.lsp.buf.declaration() <CR>", desc = "go to declaration"}, 
       {"<leader>gr", "<cmd> lua vim.lsp.buf.references() <CR>", desc = "go to references"}, 
       {"<leader>gi", "<cmd> lua vim.lsp.buf.implementation() <CR>", desc = "go to implementation"}, 
-      {"<leader>rn", "<cmd> lua vim.lsp.buf.rename() <CR>", desc = "rename"}, 
       -- {"<leader>ca", "<cmd> lua vim.lsp.buf.code_action() <CR>", desc = "code action"}, 
       -- {"<leader>h", "<cmd> lua vim.lsp.buf.hover() <CR>", desc = "hover"}, 
       -- {"<leader>wa", "<cmd> lua vim.lsp.buf.add_workspace_folder() <CR>", desc = "add workspace folder"}, 
@@ -351,6 +350,11 @@ local plugins = {
 
     },
     config = require("plugins.configs.lspsaga"),
+    dependencies = {
+      {"nvim-tree/nvim-web-devicons"},
+      {"nvim-treesitter/nvim-treesitter"}
+    },
+    event = "LspAttach",
   },
 
   {
