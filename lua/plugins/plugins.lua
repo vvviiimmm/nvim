@@ -251,10 +251,16 @@ local plugins = {
   },        
 
   {
-    'tpope/vim-surround',
-    config = function()
-      vim.g.surround_mappings_style = "surround"
-    end
+      "kylechui/nvim-surround",
+      version = "*", -- Use for stability; omit to use `main` branch for the latest features
+      event = "VeryLazy",
+      config = function()
+          require("nvim-surround").setup({
+          })
+      end
+      -- S": surround selected text
+      -- ds" or dsq
+      -- ysiw"
   },
 
   {
