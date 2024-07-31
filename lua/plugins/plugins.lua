@@ -472,6 +472,15 @@ local plugins = {
     dependencies = { "MunifTanjim/nui.nvim" },
     config = require "plugins.configs.hunk",
   },
+
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {},
+    keys = {
+      { "<leader>bi", "<cmd>IBLToggle<CR>", desc = "toggle indent blankline" },
+    },
+  },
 }
 
 local opts = {}
