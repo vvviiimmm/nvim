@@ -1,11 +1,11 @@
 -- scope search to a directory selected via file_browser
 local ts_select_dir = function(live_grep)
-  local action_state = require("telescope.actions.state")
+  local action_state = require "telescope.actions.state"
   local fb = require("telescope").extensions.file_browser
   local current_line = action_state.get_current_line()
 
   local fn = function(prompt_bufnr)
-    fb.file_browser({
+    fb.file_browser {
       files = false,
       depth = false,
       attach_mappings = function(prompt_bufnr)
@@ -15,16 +15,16 @@ local ts_select_dir = function(live_grep)
           local relative = dir:make_relative(vim.fn.getcwd())
           local absolute = dir:absolute()
 
-          live_grep({
+          live_grep {
             results_title = relative .. "/",
             cwd = absolute,
             default_text = current_line,
-          })
+          }
         end)
 
         return true
       end,
-    })
+    }
   end
 
   return fn
@@ -32,7 +32,7 @@ end
 
 return function()
   local opts = {
-     defaults = {
+    defaults = {
       vimgrep_arguments = {
         "rg",
         "-L",
@@ -109,10 +109,9 @@ return function()
 
     extensions_list = { "themes", "terms", "file_browser" },
   }
-  
-  local telescope = require("telescope")
+
+  local telescope = require "telescope"
   telescope.setup(opts)
   -- telescope.extensions.aerial.aerial()
-  telescope.load_extension("live_grep_args")
-
+  telescope.load_extension "live_grep_args"
 end

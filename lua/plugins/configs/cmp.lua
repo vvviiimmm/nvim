@@ -1,11 +1,11 @@
 return function()
-  local cmp = require('cmp')
+  local cmp = require "cmp"
 
   local lspkind_comparator = function(conf)
-    local lsp_types = require('cmp.types').lsp
+    local lsp_types = require("cmp.types").lsp
     return function(entry1, entry2)
-      if entry1.source.name ~= 'nvim_lsp' then
-        if entry2.source.name == 'nvim_lsp' then
+      if entry1.source.name ~= "nvim_lsp" then
+        if entry2.source.name == "nvim_lsp" then
           return false
         else
           return nil
@@ -35,50 +35,50 @@ return function()
       end,
     },
     mapping = {
-      ['<Up>'] = cmp.mapping.select_prev_item(),
-      ['<Down>'] = cmp.mapping.select_next_item(),
+      ["<Up>"] = cmp.mapping.select_prev_item(),
+      ["<Down>"] = cmp.mapping.select_next_item(),
       -- Add tab support
-      ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+      ["<S-Tab>"] = cmp.mapping.select_prev_item(),
       -- ['<Tab>'] = cmp.mapping.select_next_item(),
-      ['<C-I>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-P>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.close(),
-      ['<CR>'] = cmp.mapping.confirm({
+      ["<C-I>"] = cmp.mapping.scroll_docs(-4),
+      ["<C-P>"] = cmp.mapping.scroll_docs(4),
+      ["<C-Space>"] = cmp.mapping.complete(),
+      ["<C-e>"] = cmp.mapping.close(),
+      ["<CR>"] = cmp.mapping.confirm {
         behavior = cmp.ConfirmBehavior.Insert,
         select = true,
-      })
+      },
     },
     -- Installed sources:
-    sources = cmp.config.sources({
-      { name = 'path' },                              -- file paths
-      { name = 'nvim_lsp' },      -- from language server
-      { name = 'nvim_lsp_signature_help'},            -- display function signatures with current parameter emphasized
-      { name = 'nvim_lua', keyword_length = 2},       -- complete neovim's Lua runtime API such vim.lsp.*
-      { name = 'buffer', keyword_length = 3 },        -- source current buffer
-      { name = 'vsnip', keyword_length = 3  },         -- nvim-cmp source for vim-vsnip 
-    }),
+    sources = cmp.config.sources {
+      { name = "path" }, -- file paths
+      { name = "nvim_lsp" }, -- from language server
+      { name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
+      { name = "nvim_lua", keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
+      { name = "buffer", keyword_length = 3 }, -- source current buffer
+      { name = "vsnip", keyword_length = 3 }, -- nvim-cmp source for vim-vsnip
+    },
     window = {
       completion = cmp.config.window.bordered(),
       documentation = cmp.config.window.bordered(),
     },
     formatting = {
-      fields = {'kind','abbr','menu' },
+      fields = { "kind", "abbr", "menu" },
       format = function(entry, item)
-          local menu_icon ={
-              nvim_lsp = 'λ',
-              vsnip = '⋗',
-              buffer = 'Ω',
-              path = '📁',
-          }
-          item.menu = menu_icon[entry.source.name]
-          return item
+        local menu_icon = {
+          nvim_lsp = "λ",
+          vsnip = "⋗",
+          buffer = "Ω",
+          path = "📁",
+        }
+        item.menu = menu_icon[entry.source.name]
+        return item
       end,
     },
 
     sorting = {
       comparators = {
-        lspkind_comparator({
+        lspkind_comparator {
           kind_priority = {
             Field = 211,
             Property = 11,
@@ -106,12 +106,12 @@ return function()
             Unit = 1,
             Value = 1,
           },
-        }),
+        },
         label_comparator,
       },
-    }
+    },
   }
-  
+
   cmp.setup(opts)
 
   --  -- Set up lspconfig.

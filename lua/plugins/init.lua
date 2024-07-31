@@ -1,17 +1,17 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
+  vim.fn.system {
     "git",
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
     "--branch=stable", -- latest stable release
     lazypath,
-  })
+  }
 end
 vim.opt.rtp:prepend(lazypath)
 
-local plugins, opts = require("plugins.plugins")
+local plugins, opts = require "plugins.plugins"
 
 require("lazy").setup(plugins, opts)
 
@@ -30,12 +30,3 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
   group = nvim_metals_group,
 })
-
--- vim.cmd([[
---   augroup NvimTreeOverride
---     autocmd!
---     autocmd BufEnter NvimTree * highlight NvimTreeEndOfBuffer guibg=NONE
---     autocmd VimEnter * highlight NvimTreeNormal guibg=NONE
---   augroup END
--- ]])
---
