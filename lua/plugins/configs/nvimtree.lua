@@ -149,10 +149,14 @@ return function()
     on_attach = function(bufnr)
       local api = require "nvim-tree.api"
 
+      -- call default on_attach to maintain all the default mappings
+      require("nvim-tree.keymap").default_on_attach(bufnr)
+
       local function opts(desc)
         return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
       end
 
+      -- then create a custom "open file" mapping to play nice with zenmode
       vim.keymap.set("n", "<CR>", function()
         local node = api.tree.get_node_under_cursor()
         if node.nodes ~= nil then
