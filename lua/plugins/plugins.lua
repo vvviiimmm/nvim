@@ -124,6 +124,10 @@ local plugins = {
     keys = {
       -- suggest
     },
+    keys = {
+      { "<C-Space>", "<Plug>(copilot-accept-word)", mode = "i", desc = "copilot accept word" },
+      { "<C-a>", "<Plug>(copilot-next)", mode = "i", desc = "copilot next" },
+    },
   },
 
   {
