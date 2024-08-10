@@ -209,8 +209,6 @@ local plugins = {
     enabled = false,
   },
 
-  { "lukas-reineke/indent-blankline.nvim" },
-
   {
     "nvim-lualine/lualine.nvim",
     opts = require "plugins.configs.lualine",
