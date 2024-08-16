@@ -262,6 +262,9 @@ local plugins = {
       },
       { "<leader>tg", "<cmd> FloatermNew --disposable lazygit <CR>", desc = "lazy git" },
       { "<Esc><Esc>", "<C-\\><C-n>:q<CR>", mode = "t", desc = "close terminal" },
+      { "<Esc>l", "<cmd> FloatermNext <CR>", mode = "t", desc = "next terminal" },
+      { "<Esc>h", "<cmd> FloatermPrev <CR>", mode = "t", desc = "prev terminal" },
+      { "<Esc>n", "<cmd> FloatermNew <CR>", mode = "t", desc = "new terminal" },
     },
     config = function()
       vim.g.floaterm_width = 0.7
