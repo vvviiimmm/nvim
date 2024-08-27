@@ -39,8 +39,9 @@ local plugins = {
   {
     "nvim-tree/nvim-tree.lua",
     keys = {
-      { "<leader>e", "<cmd> NvimTreeFocus <CR>", desc = "focus nvimtree" },
+      -- { "<leader>e", "<cmd> NvimTreeFocus <CR>", desc = "focus nvimtree" },
       { "<leader>ee", "<cmd> NvimTreeToggle <CR>", desc = "toggle nvimtree" },
+      { "<leader>er", "<cmd> NvimTreeRefresh <CR>", desc = "nvimtree refresh" },
     },
     config = require "plugins.configs.nvimtree",
   },
