@@ -476,6 +476,16 @@ local plugins = {
       { "<leader>bi", "<cmd>IBLToggle<CR>", desc = "toggle indent blankline" },
     },
   },
+
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && yarn install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
 }
 
 local opts = {}
