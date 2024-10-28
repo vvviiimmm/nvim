@@ -189,6 +189,9 @@ local plugins = {
     "mrcjkb/rustaceanvim",
     version = "^4",
     lazy = false,
+    keys = { 
+      { "<leader>rf", "<cmd> RustFmt <CR>", desc = "rustfmt" },
+    }
   },
 
   {
