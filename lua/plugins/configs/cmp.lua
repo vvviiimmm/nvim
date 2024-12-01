@@ -56,7 +56,7 @@ return function()
       { name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
       { name = "nvim_lua", keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
       { name = "buffer", keyword_length = 3 }, -- source current buffer
-      { name = "vsnip", keyword_length = 3 }, -- nvim-cmp source for vim-vsnip
+      { name = "vsnip", keyword_length = 2 }, -- nvim-cmp source for vim-vsnip
     },
     window = {
       completion = cmp.config.window.bordered(),
@@ -92,6 +92,7 @@ return function()
             Reference = 10,
             Struct = 10,
             Variable = 9,
+            Snippet = 8,
             File = 8,
             Folder = 8,
             Class = 5,
@@ -100,7 +101,6 @@ return function()
             Keyword = 2,
             Constructor = 1,
             Interface = 1,
-            Snippet = 0,
             Text = 1,
             TypeParameter = 1,
             Unit = 1,

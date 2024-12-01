@@ -70,6 +70,9 @@ vim.api.nvim_set_keymap("n", "<leader>q", ":q<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<Leader>,", ":nohlsearch<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>l", ":w<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "[", "{", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "<C-f>", "=>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "<C-t>", "->", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "<C-'>", "\"", { noremap = true, silent = true })
 
 -- move between buffers
 vim.api.nvim_set_keymap("n", "<S-Tab>", "<C-^>", { noremap = true })
