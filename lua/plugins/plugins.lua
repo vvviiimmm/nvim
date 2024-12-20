@@ -396,13 +396,14 @@ local plugins = {
 
   {
     -- 'sindrets/diffview.nvim',
-    -- 'vvviiimmm/diffview.nvim'
+    -- 'vvviiimmm/diffview.nvim',
     dir = "~/dev/sandbox/diffview.nvim",
     lazy = false,
     keys = {
       { "<leader>dvo", "<cmd> DiffviewOpen <CR>", desc = "open diff view" },
       { "<leader>dvc", "<cmd> DiffviewClose <CR>", desc = "close diff view" },
     },
+    config = require "plugins.configs.diffview",
   },
 
   {
@@ -496,7 +497,31 @@ local plugins = {
     config = true
     -- use opts = {} for passing setup options
     -- this is equivalent to setup({}) function
+  },
+
+  {
+    'mfussenegger/nvim-dap',
+    keys = {
+      { "<leader>dn", "<cmd>DapNew<CR>", desc = "new debug session" },
+      { "<leader>db", "<cmd>DapToggleBreakpoint<CR>", desc = "toggle breakpoint" },
+      { "<leader>dj", "<cmd>DapStepOver<CR>", desc = "dap: step over" },
+      { "<leader>dt", "<cmd>DapTerminate<CR>", desc = "dap: terminate" },
+    },
+  },
+
+  { 
+    "rcarriga/nvim-dap-ui", 
+    dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} ,
+    -- config = function()
+    --   require("dapui").setup {}
+    -- end,
+    lazy = true,
+    opts = {},
+    keys = {
+      { "<leader>du", function() require("dapui").toggle() end, desc = "toggle dap ui" },
+    },
   }
+
 }
 
 local opts = {}
