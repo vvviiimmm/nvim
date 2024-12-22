@@ -524,6 +524,17 @@ local plugins = {
     keys = {
       { "<leader>du", function() require("dapui").toggle() end, desc = "toggle dap ui" },
     },
+  },
+
+  {
+    'kevinhwang91/nvim-ufo', 
+    dependencies = {'kevinhwang91/promise-async'},
+    opts = {
+      provider_selector = function(bufnr, filetype, buftype)
+        return {'treesitter', 'indent'}
+      end
+    },
+    config = require "plugins.configs.ufo",
   }
 
 }
