@@ -42,6 +42,8 @@ local plugins = {
       -- { "<leader>e", "<cmd> NvimTreeFocus <CR>", desc = "focus nvimtree" },
       { "<leader>ee", "<cmd> NvimTreeToggle <CR>", desc = "toggle nvimtree" },
       { "<leader>er", "<cmd> NvimTreeRefresh <CR>", desc = "nvimtree refresh" },
+      { "<Esc><Esc>", "<cmd> NvimTreeClose <CR>", desc = "close nvimtree" },
+
     },
     config = require "plugins.configs.nvimtree",
   },
@@ -346,6 +348,8 @@ local plugins = {
       { "<leader>sp", "<cmd>Lspsaga peek_definition<CR>", desc = "lspsaga: peek definition" },
       { "<leader>sr", "<cmd>Lspsaga rename<CR>", desc = "lsp saga: rename" },
       { "<leader>sh", "<cmd>Lspsaga hover_doc<CR>", desc = "lsp saga: hover doc" },
+      { "<leader>sj", "<cmd>Lspsaga diagnostic_jump_next<CR>", desc = "lsp saga: diagnostic jump next" },
+      { "<leader>sk", "<cmd>Lspsaga diagnostic_jump_prev<CR>", desc = "lsp saga: diagnostic jump prev" },
     },
     config = require "plugins.configs.lspsaga",
     dependencies = {
