@@ -172,7 +172,24 @@ local plugins = {
         mode = "v",
         desc = "yank paste",
       },
+      {
+      "<leader>cp",
+      function()
+        vim.cmd([[g/^\s*println!/normal gcc]])
+      end,
+      mode = "n",
+      desc = "Comment println! statements",
     },
+    {
+      "<leader>up",
+      function()
+        vim.cmd([[g/^\s*\/\/\s*println!/normal gcc]])
+      end,
+      mode = "n",
+      desc = "Uncomment println! statements",
+    },
+    },
+
     opts = {},
   },
 
@@ -193,6 +210,7 @@ local plugins = {
     lazy = false,
     keys = { 
       { "<leader>rf", "<cmd> RustFmt <CR>", desc = "rustfmt" },
+      { "<leader>rd", "<cmd> RustLsp openDocs <CR>", desc = "openRustDocs" },
     }
   },
 
@@ -535,6 +553,22 @@ local plugins = {
       end
     },
     config = require "plugins.configs.ufo",
+  },
+
+  {
+    'mfussenegger/nvim-lint',
+    config = function()
+      require('lint').linters_by_ft = {
+        markdown = {'vale'},
+        html = {'tidy'},
+        css = {'stylelint'},
+        javascript = {'eslint'},
+      }
+    end,
+    keys = {
+      { "<leader>du", function() require("dapui").toggle() end, desc = "toggle dap ui" },
+    },
+
   }
 
 }
