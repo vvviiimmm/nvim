@@ -150,20 +150,6 @@ local plugins = {
         desc = "toggle comment",
       },
       {
-        "<leader>/",
-        function()
-          require("Comment.api").toggle.linewise.current()
-        end,
-        mode = "n",
-        desc = "toggle comment",
-      },
-      {
-        "<leader>/",
-        "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-        mode = "v",
-        desc = "toggle comment",
-      },
-      {
         "<leader>o",
         function()
           require("utils").yank_paste_comment()
@@ -239,10 +225,10 @@ local plugins = {
 
   { "hrsh7th/cmp-nvim-lua" },
   { "hrsh7th/cmp-nvim-lsp-signature-help" },
-  { "hrsh7th/cmp-vsnip" },
+  -- { "hrsh7th/cmp-vsnip" },
   { "hrsh7th/cmp-path" },
   { "hrsh7th/cmp-buffer" },
-  { "hrsh7th/vim-vsnip" },
+  -- { "hrsh7th/vim-vsnip" },
 
   {
     "folke/trouble.nvim",
@@ -533,9 +519,6 @@ local plugins = {
   {
     "rcarriga/nvim-dap-ui",
     dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
-    -- config = function()
-    --   require("dapui").setup {}
-    -- end,
     lazy = true,
     opts = {},
     keys = {
@@ -561,25 +544,18 @@ local plugins = {
   },
 
   {
-    "mfussenegger/nvim-lint",
-    config = function()
-      require("lint").linters_by_ft = {
-        markdown = { "vale" },
-        html = { "tidy" },
-        css = { "stylelint" },
-        javascript = { "eslint" },
-      }
-    end,
-    keys = {
-      {
-        "<leader>du",
-        function()
-          require("dapui").toggle()
-        end,
-        desc = "toggle dap ui",
-      },
+    "L3MON4D3/LuaSnip",
+    version = "v2.*",
+    dependencies = { 
+      -- "rafamadriz/friendly-snippets",
+      "saadparwaiz1/cmp_luasnip"
     },
-  },
+    build = "make install_jsregexp",
+    config = function()
+          require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/snippets/"})
+          require("luasnip").config.setup({})
+      end,
+    },
 }
 
 local opts = {}

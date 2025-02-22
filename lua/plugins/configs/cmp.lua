@@ -1,5 +1,6 @@
 return function()
   local cmp = require "cmp"
+  local luasnip = require "luasnip"
 
   local lspkind_comparator = function(conf)
     local lsp_types = require("cmp.types").lsp
@@ -30,24 +31,41 @@ return function()
   local opts = {
     -- Enable LSP snippets
     snippet = {
+      -- expand = function(args)
+      --   vim.fn["vsnip#anonymous"](args.body)
+      -- end,
       expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body)
+        luasnip.lsp_expand(args.body)
       end,
     },
     mapping = {
       ["<Up>"] = cmp.mapping.select_prev_item(),
       ["<Down>"] = cmp.mapping.select_next_item(),
       -- Add tab support
-      ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+      -- ["<S-Tab>"] = cmp.mapping.select_prev_item(),
       -- ['<Tab>'] = cmp.mapping.select_next_item(),
-      ["<C-I>"] = cmp.mapping.scroll_docs(-4),
-      ["<C-P>"] = cmp.mapping.scroll_docs(4),
+      -- ["<C-I>"] = cmp.mapping.scroll_docs(-4),
+      -- ["<C-P>"] = cmp.mapping.scroll_docs(4),
       -- ["<C-Space>"] = cmp.mapping.complete(),
       ["<C-e>"] = cmp.mapping.close(),
       ["<CR>"] = cmp.mapping.confirm {
         behavior = cmp.ConfirmBehavior.Insert,
         select = true,
       },
+      ["<Tab>"] = cmp.mapping(function(fallback)
+        if luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+      ["<S-Tab>"] = cmp.mapping(function(fallback)
+        if luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
     },
     -- Installed sources:
     sources = cmp.config.sources {
@@ -56,7 +74,8 @@ return function()
       { name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
       { name = "nvim_lua", keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
       { name = "buffer", keyword_length = 3 }, -- source current buffer
-      { name = "vsnip", keyword_length = 2 }, -- nvim-cmp source for vim-vsnip
+      -- { name = "vsnip", keyword_length = 2 }, -- nvim-cmp source for vim-vsnip
+      { name = "luasnip", keyword_length = 2 }, -- nvim-cmp source for luasnip
     },
     window = {
       completion = cmp.config.window.bordered(),
@@ -113,11 +132,4 @@ return function()
   }
 
   cmp.setup(opts)
-
-  --  -- Set up lspconfig.
-  -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
-  -- -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  -- require('lspconfig')['rust-analyzer'].setup {
-  --   capabilities = capabilities
-  -- }
 end
