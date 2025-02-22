@@ -102,7 +102,7 @@ return function()
           border = "rounded",
           relative = "cursor",
           -- width = 100,
-          height = 50
+          height = 50,
         },
       },
     },

@@ -4,8 +4,8 @@ return function()
       auto_save = true,
     },
     beacon = {
-      frequency = 20
-    }
+      frequency = 20,
+    },
   }
 
   require("lspsaga").setup(opts)

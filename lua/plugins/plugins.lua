@@ -43,7 +43,6 @@ local plugins = {
       { "<leader>ee", "<cmd> NvimTreeToggle <CR>", desc = "toggle nvimtree" },
       { "<leader>er", "<cmd> NvimTreeRefresh <CR>", desc = "nvimtree refresh" },
       { "<Esc><Esc>", "<cmd> NvimTreeClose <CR>", desc = "close nvimtree" },
-
     },
     config = require "plugins.configs.nvimtree",
   },
@@ -173,21 +172,21 @@ local plugins = {
         desc = "yank paste",
       },
       {
-      "<leader>cp",
-      function()
-        vim.cmd([[g/^\s*println!/normal gcc]])
-      end,
-      mode = "n",
-      desc = "Comment println! statements",
-    },
-    {
-      "<leader>up",
-      function()
-        vim.cmd([[g/^\s*\/\/\s*println!/normal gcc]])
-      end,
-      mode = "n",
-      desc = "Uncomment println! statements",
-    },
+        "<leader>cp",
+        function()
+          vim.cmd [[g/^\s*println!/normal gcc]]
+        end,
+        mode = "n",
+        desc = "Comment println! statements",
+      },
+      {
+        "<leader>up",
+        function()
+          vim.cmd [[g/^\s*\/\/\s*println!/normal gcc]]
+        end,
+        mode = "n",
+        desc = "Uncomment println! statements",
+      },
     },
 
     opts = {},
@@ -208,10 +207,10 @@ local plugins = {
     "mrcjkb/rustaceanvim",
     version = "^4",
     lazy = false,
-    keys = { 
+    keys = {
       { "<leader>rf", "<cmd> RustFmt <CR>", desc = "rustfmt" },
       { "<leader>rd", "<cmd> RustLsp openDocs <CR>", desc = "openRustDocs" },
-    }
+    },
   },
 
   {
@@ -514,15 +513,15 @@ local plugins = {
   },
 
   {
-    'windwp/nvim-autopairs',
+    "windwp/nvim-autopairs",
     event = "InsertEnter",
-    config = true
+    config = true,
     -- use opts = {} for passing setup options
     -- this is equivalent to setup({}) function
   },
 
   {
-    'mfussenegger/nvim-dap',
+    "mfussenegger/nvim-dap",
     keys = {
       { "<leader>dn", "<cmd>DapNew<CR>", desc = "new debug session" },
       { "<leader>db", "<cmd>DapToggleBreakpoint<CR>", desc = "toggle breakpoint" },
@@ -531,46 +530,56 @@ local plugins = {
     },
   },
 
-  { 
-    "rcarriga/nvim-dap-ui", 
-    dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} ,
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
     -- config = function()
     --   require("dapui").setup {}
     -- end,
     lazy = true,
     opts = {},
     keys = {
-      { "<leader>du", function() require("dapui").toggle() end, desc = "toggle dap ui" },
+      {
+        "<leader>du",
+        function()
+          require("dapui").toggle()
+        end,
+        desc = "toggle dap ui",
+      },
     },
   },
 
   {
-    'kevinhwang91/nvim-ufo', 
-    dependencies = {'kevinhwang91/promise-async'},
+    "kevinhwang91/nvim-ufo",
+    dependencies = { "kevinhwang91/promise-async" },
     opts = {
       provider_selector = function(bufnr, filetype, buftype)
-        return {'treesitter', 'indent'}
-      end
+        return { "treesitter", "indent" }
+      end,
     },
     config = require "plugins.configs.ufo",
   },
 
   {
-    'mfussenegger/nvim-lint',
+    "mfussenegger/nvim-lint",
     config = function()
-      require('lint').linters_by_ft = {
-        markdown = {'vale'},
-        html = {'tidy'},
-        css = {'stylelint'},
-        javascript = {'eslint'},
+      require("lint").linters_by_ft = {
+        markdown = { "vale" },
+        html = { "tidy" },
+        css = { "stylelint" },
+        javascript = { "eslint" },
       }
     end,
     keys = {
-      { "<leader>du", function() require("dapui").toggle() end, desc = "toggle dap ui" },
+      {
+        "<leader>du",
+        function()
+          require("dapui").toggle()
+        end,
+        desc = "toggle dap ui",
+      },
     },
-
-  }
-
+  },
 }
 
 local opts = {}

@@ -72,8 +72,13 @@ vim.api.nvim_set_keymap("n", "<Leader>l", ":w<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "[", "{", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-f>", "=>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-t>", "->", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<C-'>", "\"", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>li", ":lua vim.api.inlay_hints.enable(true) <CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "<C-'>", '"', { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+  "n",
+  "<Leader>li",
+  ":lua vim.api.inlay_hints.enable(true) <CR>",
+  { noremap = true, silent = true }
+)
 
 -- move between buffers
 vim.api.nvim_set_keymap("n", "<S-Tab>", "<C-^>", { noremap = true })
@@ -151,4 +156,3 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.shiftwidth = 4
   end,
 })
-
