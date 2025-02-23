@@ -66,6 +66,12 @@ return function()
           fallback()
         end
       end, { "i", "s" }),
+      ["<Right>"] = cmp.mapping(function(fallback)
+        if luasnip.choice_active() then
+            luasnip.change_choice(1)
+        end
+      end, { "i", "s" }),
+      
     },
     -- Installed sources:
     sources = cmp.config.sources {

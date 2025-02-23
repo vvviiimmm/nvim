@@ -124,12 +124,13 @@ local plugins = {
     "github/copilot.vim",
     lazy = false,
     keys = {
-      -- suggest
-    },
-    keys = {
       { "<C-Space>", "<Plug>(copilot-accept-word)", mode = "i", desc = "copilot accept word" },
       { "<C-a>", "<Plug>(copilot-next)", mode = "i", desc = "copilot next" },
     },
+    -- disable by default, only use when absolutely necessary
+    config = function()
+      vim.g.copilot_enabled = false
+    end,
   },
 
   {
@@ -546,16 +547,19 @@ local plugins = {
   {
     "L3MON4D3/LuaSnip",
     version = "v2.*",
-    dependencies = { 
+    dependencies = {
       -- "rafamadriz/friendly-snippets",
-      "saadparwaiz1/cmp_luasnip"
+      "saadparwaiz1/cmp_luasnip",
     },
     build = "make install_jsregexp",
     config = function()
-          require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/snippets/"})
-          require("luasnip").config.setup({})
-      end,
-    },
+      require("luasnip.loaders.from_lua").load { paths = "~/.config/nvim/lua/snippets/" }
+      require("luasnip").config.setup {}
+    end,
+    keys = {
+        
+    }
+  },
 }
 
 local opts = {}
