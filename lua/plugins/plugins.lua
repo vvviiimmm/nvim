@@ -156,6 +156,14 @@ local plugins = {
           require("utils").yank_paste_comment()
         end,
         mode = "v",
+        desc = "yank paste comment",
+      },
+      {
+        "<leader>c",
+        function()
+          require("utils").yank_paste()
+        end,
+        mode = "v",
         desc = "yank paste",
       },
       {

@@ -41,6 +41,7 @@ return {
     i(2, ""),
     t {");", "", "" },
   }),
+
   -- Display impl
   s("disp", {
     t { "impl std::fmt::Display for " },
