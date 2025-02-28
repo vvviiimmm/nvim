@@ -32,14 +32,30 @@ return {
     i(1, ""),
     t ': {:?}", ',
     i(2, ""),
-    t {");", "", "" },
+    t { ");" },
   }),
+
+  s("pdee", {
+    t 'println!("',
+    i(1, ""),
+    t ': {:?}", ',
+    f(function(args, snip) return args[1][1] end, {1}),
+    t { ");" },
+  }),
+s("trig", {
+	i(1, "text_of_first"),
+	i(2, {"first_line_of_second", "second_line_of_second"}),
+	f(function(args, snip)
+		--here
+	-- order is 2,1, not 1,2!!
+	end, {1, 2} )}),
+
   s("pdi", {
     t 'println!("',
     i(1, ""),
     t ': {}", ',
     i(2, ""),
-    t {");", "", "" },
+    t { ");", "", "" },
   }),
 
   -- Display impl
@@ -64,21 +80,48 @@ return {
 
   -- useful for heaps
   s("ord", {
-        t({"impl Ord for "}),
-        i(1, ""),
-        t({" {", "    fn cmp(&self, other: &Self) -> std::cmp::Ordering {", "        self."}),
-        i(2, ""),
-        t(".cmp(&other."),
-        f(function(args) return args[1][1] end, {2}),
-        t(")"),
-        c(3, {
-            t(""),
-            t(".reverse()"),
-        }),
-        t({"", "    }", "}", "", "impl PartialOrd for "}),
-        f(function(args) return args[1][1] end, {1}),
-        t({" {", "    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {", "        Some(self.cmp(other))", "    }", "}"}),
-    })
-  
+    t { "impl Ord for " },
+    i(1, ""),
+    t { " {", "    fn cmp(&self, other: &Self) -> std::cmp::Ordering {", "        self." },
+    i(2, ""),
+    t ".cmp(&other.",
+    f(function(args)
+      return args[1][1]
+    end, { 2 }),
+    t ")",
+    c(3, {
+      t "",
+      t ".reverse()",
+    }),
+    t { "", "    }", "}", "", "impl PartialOrd for " },
+    f(function(args)
+      return args[1][1]
+    end, { 1 }),
+    t {
+      " {",
+      "    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {",
+      "        Some(self.cmp(other))",
+      "    }",
+      "}",
+    },
+  }),
 
+  -- random macros
+  s("mvec2d", {
+    t "macro_rules! to_vec { ($($x:expr),*) => (vec![$($x.to_vec()),*]); }",
+  }),
+  s("mpretty2d", 
+      t({
+        "macro_rules! pretty_print_2d {",
+        "    ($vec:expr) => {",
+        "        for row in $vec.iter() {",
+        "            for elem in row.iter() {",
+        "                print!(\"{:4} \", elem);",
+        "            }",
+        "            println!();",
+        "        }",
+        "    };",
+        "}",
+      })
+    ),
 }

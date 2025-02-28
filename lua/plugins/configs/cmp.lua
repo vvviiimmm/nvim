@@ -66,12 +66,11 @@ return function()
           fallback()
         end
       end, { "i", "s" }),
-      ["<C-b>"] = cmp.mapping(function(fallback)
+      ["<C-Space>"] = cmp.mapping(function(fallback)
         if luasnip.choice_active() then
-            luasnip.change_choice(1)
+          luasnip.change_choice(1)
         end
       end, { "i", "s" }),
-      
     },
     -- Installed sources:
     sources = cmp.config.sources {
@@ -81,7 +80,7 @@ return function()
       { name = "nvim_lua", keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
       { name = "buffer", keyword_length = 3 }, -- source current buffer
       -- { name = "vsnip", keyword_length = 2 }, -- nvim-cmp source for vim-vsnip
-      { name = "luasnip", keyword_length = 2 }, -- nvim-cmp source for luasnip
+      { name = "luasnip", keyword_length = 2,  option = { show_autosnippets = true } }, -- nvim-cmp source for luasnip
     },
     window = {
       completion = cmp.config.window.bordered(),
