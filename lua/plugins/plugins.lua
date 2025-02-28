@@ -200,7 +200,7 @@ local plugins = {
 
   {
     "mrcjkb/rustaceanvim",
-    version = "^4",
+    -- version = "^4",
     lazy = false,
     keys = {
       { "<leader>rf", "<cmd> RustFmt <CR>", desc = "rustfmt" },
@@ -562,11 +562,24 @@ local plugins = {
     build = "make install_jsregexp",
     config = function()
       require("luasnip.loaders.from_lua").load { paths = "~/.config/nvim/lua/snippets/" }
-      require("luasnip").config.setup {}
+      -- require("luasnip").config.setup {}
     end,
-    keys = {
-        
-    }
+    keys = {},
+  },
+
+  {
+    "saadparwaiz1/cmp_luasnip"
+  },
+
+  {
+    "MagicDuck/grug-far.nvim",
+    config = function()
+      require("grug-far").setup {
+        -- options, see Configuration section below
+        -- there are no required options atm
+        -- engine = 'ripgrep' is default, but 'astgrep' can be specified
+      }
+    end,
   },
 }
 
