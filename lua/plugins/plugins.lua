@@ -581,6 +581,16 @@ local plugins = {
       }
     end,
   },
+
+  {
+    "brenoprata10/nvim-highlight-colors",
+    config = function() 
+      require('nvim-highlight-colors').setup({
+        render = 'background',
+        virtual_symbol_position = 'eow',
+      })
+    end,
+  }
 }
 
 local opts = {}
