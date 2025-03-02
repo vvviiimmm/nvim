@@ -590,6 +590,9 @@ local plugins = {
         virtual_symbol_position = 'eow',
       })
     end,
+    keys = {
+        { "<leader>ht", function() require("nvim-highlight-colors").toggle() end, desc = "toggle highlight colors" },
+      }
   }
 }
 
