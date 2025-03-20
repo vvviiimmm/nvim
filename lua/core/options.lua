@@ -8,6 +8,7 @@ opt.showmode = false
 opt.termguicolors = true
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
+opt.showcmd = true
 
 -- opt.clipboard = "unnamedplus"
 opt.cursorline = true
