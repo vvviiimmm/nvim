@@ -18,6 +18,8 @@ local plugins = {
     enabled = true,
   },
 
+
+
   {
     "folke/which-key.nvim",
     lazy = false,
@@ -58,6 +60,7 @@ local plugins = {
       { "<leader>fo", "<cmd> Telescope oldfiles <CR>", desc = "find oldfiles" },
       { "<leader>tk", "<cmd> Telescope keymaps <CR>", desc = "show keys" },
       { "<leader>fi", "<cmd> Telescope grep_string hidden=true <CR>", desc = "search word under the cursor" },
+      { "<leader>fj", "<cmd> Telescope luasnip <CR>", desc = "find snippets" },
 
       -- telescope lsp
       { "<leader>fr", "<cmd> Telescope lsp_references <CR>", desc = "references" },
@@ -125,11 +128,11 @@ local plugins = {
     lazy = false,
     keys = {
       { "<C-Space>", "<Plug>(copilot-accept-word)", mode = "i", desc = "copilot accept word" },
-      { "<C-a>", "<Plug>(copilot-next)", mode = "i", desc = "copilot next" },
+      -- { "<C-a>", "<Plug>(copilot-next)", mode = "i", desc = "copilot next" },
     },
     -- disable by default, only use when absolutely necessary
     config = function()
-      vim.g.copilot_enabled = false
+      -- vim.g.copilot_enabled = false
     end,
   },
 
@@ -571,6 +574,11 @@ local plugins = {
     "saadparwaiz1/cmp_luasnip"
   },
 
+      {
+    "benfowler/telescope-luasnip.nvim",
+  },
+
+
   {
     "MagicDuck/grug-far.nvim",
     config = function()
@@ -593,7 +601,8 @@ local plugins = {
     keys = {
         { "<leader>ht", function() require("nvim-highlight-colors").toggle() end, desc = "toggle highlight colors" },
       }
-  }
+  },
+
 }
 
 local opts = {}

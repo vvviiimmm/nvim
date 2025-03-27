@@ -114,4 +114,5 @@ return function()
   telescope.setup(opts)
   -- telescope.extensions.aerial.aerial()
   telescope.load_extension "live_grep_args"
+  telescope.load_extension "luasnip"
 end

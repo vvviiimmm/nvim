@@ -19,8 +19,8 @@ vim.api.nvim_set_keymap("n", "<Leader>hs", ":noh<CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "<Leader>,", ":nohlsearch<CR>", { silent = true })
 
 -- corne awkwardness
-vim.api.nvim_set_keymap("i", "<C-f>", "=>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<C-t>", "->", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "<C-t>", "=>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("i", "<C-t>", "->", { noremap = true, silent = true })
 
 -- movement
 vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { silent = true })
