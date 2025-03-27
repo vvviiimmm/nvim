@@ -127,4 +127,4 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-require('core/remaps')
+require "core/remaps"

@@ -18,6 +18,6 @@ function M.yank_paste()
 
   vim.cmd "normal! `>o"
   vim.cmd "normal! cc "
-  vim.cmd 'normal! x"zP' 
+  vim.cmd 'normal! x"zP'
 end
 return M

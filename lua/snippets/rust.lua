@@ -39,16 +39,19 @@ return {
     t 'println!("',
     i(1, ""),
     t ': {:?}", ',
-    f(function(args, snip) return args[1][1] end, {1}),
+    f(function(args, snip)
+      return args[1][1]
+    end, { 1 }),
     t { ");" },
   }),
-s("trig", {
-	i(1, "text_of_first"),
-	i(2, {"first_line_of_second", "second_line_of_second"}),
-	f(function(args, snip)
-		--here
-	-- order is 2,1, not 1,2!!
-	end, {1, 2} )}),
+  s("trig", {
+    i(1, "text_of_first"),
+    i(2, { "first_line_of_second", "second_line_of_second" }),
+    f(function(args, snip)
+      --here
+      -- order is 2,1, not 1,2!!
+    end, { 1, 2 }),
+  }),
 
   s("pdi", {
     t 'println!("',
@@ -107,29 +110,37 @@ s("trig", {
   }),
 
   s("mat", {
-    t("match "), i(1, ""), t(" {"),
-    t({"", "    "}), i(2, ""), t(" => {"),
-    t({"", "        "}), i(4, ""),
-    t({"", "    },", "    "}), i(3, ""), t(" => {"),
-    t({"", "    }", "}"}),
+    t "match ",
+    i(1, ""),
+    t " {",
+    t { "", "    " },
+    i(2, ""),
+    t " => {",
+    t { "", "        " },
+    i(4, ""),
+    t { "", "    },", "    " },
+    i(3, ""),
+    t " => {",
+    t { "", "    }", "}" },
   }),
 
   -- random macros
   s("mvec2d", {
     t "macro_rules! to_vec { ($($x:expr),*) => (vec![$($x.to_vec()),*]); }",
   }),
-  s("mpretty2d", 
-      t({
-        "macro_rules! pretty_print_2d {",
-        "    ($vec:expr) => {",
-        "        for row in $vec.iter() {",
-        "            for elem in row.iter() {",
-        "                print!(\"{:4} \", elem);",
-        "            }",
-        "            println!();",
-        "        }",
-        "    };",
-        "}",
-      })
-    ),
+  s(
+    "mpretty2d",
+    t {
+      "macro_rules! pretty_print_2d {",
+      "    ($vec:expr) => {",
+      "        for row in $vec.iter() {",
+      "            for elem in row.iter() {",
+      '                print!("{:4} ", elem);',
+      "            }",
+      "            println!();",
+      "        }",
+      "    };",
+      "}",
+    }
+  ),
 }

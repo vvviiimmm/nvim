@@ -18,8 +18,6 @@ local plugins = {
     enabled = true,
   },
 
-
-
   {
     "folke/which-key.nvim",
     lazy = false,
@@ -571,13 +569,12 @@ local plugins = {
   },
 
   {
-    "saadparwaiz1/cmp_luasnip"
+    "saadparwaiz1/cmp_luasnip",
   },
 
-      {
+  {
     "benfowler/telescope-luasnip.nvim",
   },
-
 
   {
     "MagicDuck/grug-far.nvim",
@@ -592,17 +589,22 @@ local plugins = {
 
   {
     "brenoprata10/nvim-highlight-colors",
-    config = function() 
-      require('nvim-highlight-colors').setup({
-        render = 'background',
-        virtual_symbol_position = 'eow',
-      })
+    config = function()
+      require("nvim-highlight-colors").setup {
+        render = "background",
+        virtual_symbol_position = "eow",
+      }
     end,
     keys = {
-        { "<leader>ht", function() require("nvim-highlight-colors").toggle() end, desc = "toggle highlight colors" },
-      }
+      {
+        "<leader>ht",
+        function()
+          require("nvim-highlight-colors").toggle()
+        end,
+        desc = "toggle highlight colors",
+      },
+    },
   },
-
 }
 
 local opts = {}
