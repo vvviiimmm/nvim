@@ -131,6 +131,7 @@ local plugins = {
     -- disable by default, only use when absolutely necessary
     config = function()
       -- vim.g.copilot_enabled = false
+      vim.g.copilot_node_command = "/Users/vi/.nvm/versions/node/v20.19.0/bin/node" 
     end,
   },
 
