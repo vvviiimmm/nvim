@@ -95,15 +95,15 @@ local plugins = {
     },
   },
 
-  {
-    "neovim/nvim-lspconfig",
-    keys = {
-      { "<leader>gd", "<cmd> lua vim.lsp.buf.definition() <CR>", desc = "go to definition" },
-      { "<leader>gg", "<cmd> lua vim.lsp.buf.declaration() <CR>", desc = "go to declaration" },
-      { "<leader>gr", "<cmd> lua vim.lsp.buf.references() <CR>", desc = "go to references" },
-      { "<leader>gi", "<cmd> lua vim.lsp.buf.implementation() <CR>", desc = "go to implementation" },
-    },
-  },
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   keys = {
+  --     { "<leader>gd", "<cmd> lua vim.lsp.buf.definition() <CR>", desc = "go to definition" },
+  --     { "<leader>gg", "<cmd> lua vim.lsp.buf.declaration() <CR>", desc = "go to declaration" },
+  --     { "<leader>gr", "<cmd> lua vim.lsp.buf.references() <CR>", desc = "go to references" },
+  --     { "<leader>gi", "<cmd> lua vim.lsp.buf.implementation() <CR>", desc = "go to implementation" },
+  --   },
+  -- },
 
   {
     "nvim-treesitter/nvim-treesitter",
@@ -429,13 +429,13 @@ local plugins = {
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   },
 
-  {
-    "folke/neodev.nvim",
-    opts = {},
-    config = function()
-      require("neodev").setup()
-    end,
-  },
+  -- {
+  --   "folke/neodev.nvim",
+  --   opts = {},
+  --   config = function()
+  --     require("neodev").setup()
+  --   end,
+  -- },
 
   {
     dir = "/Users/vi/dev/sandbox/nvim/helloplugin/",
