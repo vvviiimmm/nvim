@@ -27,7 +27,7 @@ local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 
 return {
-  s("pde", {
+  s("!dd", {
     t 'println!("',
     i(1, ""),
     t ': {:?}", ',
@@ -35,7 +35,7 @@ return {
     t { ");" },
   }),
 
-  s("pdee", {
+  s("!d", {
     t 'println!("',
     i(1, ""),
     t ': {:?}", ',
@@ -53,7 +53,7 @@ return {
     end, { 1, 2 }),
   }),
 
-  s("pdi", {
+  s("!p", {
     t 'println!("',
     i(1, ""),
     t ': {}", ',
@@ -107,21 +107,6 @@ return {
       "    }",
       "}",
     },
-  }),
-
-  s("mat", {
-    t "match ",
-    i(1, ""),
-    t " {",
-    t { "", "    " },
-    i(2, ""),
-    t " => {",
-    t { "", "        " },
-    i(4, ""),
-    t { "", "    },", "    " },
-    i(3, ""),
-    t " => {",
-    t { "", "    }", "}" },
   }),
 
   -- random macros
@@ -179,6 +164,63 @@ return {
       "    let cli = Cli::parse();",
       "}",
     }
-  )
+  ),
+
+  s("!ife", {
+    t "if ",
+    i(1, "cond"),
+    t " {",
+    t { "", "    " },
+    i(2, ""),
+    t { "", "}" },
+    t " else {",
+    t { "", "    " },
+    i(3, ""),
+    t { "", "}" },
+  }),
+
+  s("!iflet", {
+    t "if let Some(",
+    i(1, "var"),
+    t ") = ",
+    i(2, "opt"),
+    t " {",
+    t { "", "    " },
+    i(3, ""),
+    t { "", "}" },
+  }),
+
+  s("!fn", {
+    t "fn ",
+    i(1, "name"),
+    t "(",
+    i(2, "args"),
+    t ") -> ",
+    i(3, "ret"),
+    t " {",
+    t { "", "    " },
+    i(4, ""),
+    t { "", "}" },
+  }),
+
+  s("!mat", {
+    t "match ",
+    i(1, "value"),
+    t " {",
+    t { "", "    " },
+    i(2, "pattern"),
+    t " => ",
+    i(3, "expression"),
+    t ",",
+    t { "", "}" },
+  }),
+
+  s("!b", {
+    t "{",
+    t { "", "    " },
+    i(1, ""),
+    t { "", "}" },
+  }),
+
 
 }
