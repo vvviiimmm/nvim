@@ -190,6 +190,7 @@ return {
     t { "", "}" },
   }),
 
+  -- just function
   s("!fn", {
     t "fn ",
     i(1, "name"),
@@ -200,6 +201,20 @@ return {
     t " {",
     t { "", "    " },
     i(4, ""),
+    t { "", "}" },
+  }),
+
+  -- function with Result and anyhow error
+  s("!fnany", {
+    t "fn ",
+    i(1, "name"),
+    t "(",
+    i(2, "args"),
+    t ") -> Result<",
+    i(3, "()"),
+    t ", anyhow::Error> {",
+    t { "", "    " },
+    i(4, "Ok(())"),
     t { "", "}" },
   }),
 
@@ -222,5 +237,41 @@ return {
     t { "", "}" },
   }),
 
+  -- s("!time", {
+  --   t { "let start_time = std::time::Instant::now();", "" },
+  --   i(1, "/* to time */"),
+  --   t { "", "let end_time = std::time::Instant::now();",
+  --       "let duration = end_time.duration_since(start_time);",
+  --       "println!(\"Time elapsed: {duration:?}\");" },
+  -- }),
 
+  s("!mtime", {
+    t { "macro_rules! time {",
+        "    ($expression:expr) => {",
+        "        let start_time = std::time::Instant::now();",
+        "        let result = $expression;",
+        "        let end_time = std::time::Instant::now();",
+        "        let duration = end_time.duration_since(start_time);",
+        "        println!(\"Time elapsed for '{}': {:?}\", stringify!($expression), duration);",
+        "        result",
+        "    };",
+        "}",
+    }
+  }),
+
+  -- Usage snippet for the timed! macro
+  s("!time", {
+    t "time!(",
+    i(1, "..."),
+    t ")",
+  }),
+
+  --Result type 
+  s("!res", {
+    t "Result<",
+    i(1, "T"),
+    t ", ",
+    i(2, "E"),
+    t ">",
+  }),
 }

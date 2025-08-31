@@ -95,15 +95,32 @@ local plugins = {
     },
   },
 
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   keys = {
-  --     { "<leader>gd", "<cmd> lua vim.lsp.buf.definition() <CR>", desc = "go to definition" },
-  --     { "<leader>gg", "<cmd> lua vim.lsp.buf.declaration() <CR>", desc = "go to declaration" },
-  --     { "<leader>gr", "<cmd> lua vim.lsp.buf.references() <CR>", desc = "go to references" },
-  --     { "<leader>gi", "<cmd> lua vim.lsp.buf.implementation() <CR>", desc = "go to implementation" },
-  --   },
-  -- },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      -- vim.lsp.enable('lua_lsss')
+      require('lspconfig').lua_ls.setup{}
+    end,
+    dependencies = {
+      {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+    },
+    -- keys = {
+      -- { "<leader>gd", "<cmd> lua vim.lsp.buf.definition() <CR>", desc = "go to definition" },
+      -- { "<leader>gg", "<cmd> lua vim.lsp.buf.declaration() <CR>", desc = "go to declaration" },
+      -- { "<leader>gr", "<cmd> lua vim.lsp.buf.references() <CR>", desc = "go to references" },
+      -- { "<leader>gi", "<cmd> lua vim.lsp.buf.implementation() <CR>", desc = "go to implementation" },
+    -- },
+  },
 
   {
     "nvim-treesitter/nvim-treesitter",
@@ -130,7 +147,7 @@ local plugins = {
     },
     -- disable by default, only use when absolutely necessary
     config = function()
-      -- vim.g.copilot_enabled = false
+      vim.g.copilot_enabled = false
       vim.g.copilot_node_command = "/Users/vi/.nvm/versions/node/v20.19.0/bin/node" 
     end,
   },
@@ -195,10 +212,10 @@ local plugins = {
     opts = {},
   },
 
-  {
-    "williamboman/mason-lspconfig.nvim",
-    opts = {},
-  },
+  -- {
+  --   "williamboman/mason-lspconfig.nvim",
+  --   opts = {},
+  -- },
 
   {
     "mrcjkb/rustaceanvim",
@@ -207,6 +224,9 @@ local plugins = {
     keys = {
       { "<leader>rf", "<cmd> RustFmt <CR>", desc = "rustfmt" },
       { "<leader>rd", "<cmd> RustLsp openDocs <CR>", desc = "openRustDocs" },
+      { "<leader>sc", function() 
+        vim.cmd.RustLsp { 'flyCheck', 'run' }
+      end, desc = "manually run rust-analyzer check (hacky)" },
     },
   },
 
@@ -452,10 +472,10 @@ local plugins = {
     opts = {},
     -- stylua: ignore
     keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "s", mode = { "n", "x", "o" }, function() require("flash").treesitter_search() end, desc = "treesitter search" },
       { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      -- { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      -- { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
@@ -657,10 +677,10 @@ local plugins = {
     -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
     --
     -- See the fuzzy documentation for more information
-    fuzzy = { implementation = "prefer_rust_with_warning" }
-  },
-  opts_extend = { "sources.default" }
-}
+      fuzzy = { implementation = "prefer_rust_with_warning" }
+    },
+    opts_extend = { "sources.default" }
+  }
 }
 
 local opts = {}
