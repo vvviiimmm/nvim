@@ -68,6 +68,8 @@ g.mapleader = " "
 
 opt.clipboard = { "unnamed", "unnamedplus" }
 
+-- vim.o.winborder = "rounded"
+
 -- disable some builtin vim plugins
 local default_plugins = {
   "2html_plugin",

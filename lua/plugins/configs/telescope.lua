@@ -41,7 +41,7 @@ return function()
         "--line-number",
         "--column",
         "--smart-case",
-        "--hidden"
+        "--hidden",
       },
       prompt_prefix = "   ",
       selection_caret = "  ",

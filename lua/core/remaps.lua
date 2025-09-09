@@ -36,3 +36,9 @@ vim.api.nvim_set_keymap("n", "<C-T>", ":let @+ = expand('%:p')<CR>", { noremap =
 vim.api.nvim_set_keymap("n", "<Leader>l", ":w<CR>", { silent = true })
 -- vim.api.nvim_set_keymap("n", "<leader>q", ":q<CR>", { noremap = true })
 --vim.api.nvim_set_keymap("i", "<C-O>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+
+-- fd to double ESC
+vim.api.nvim_set_keymap("n", "<Leader>dd", "<Esc><Esc>", { noremap = true, silent = true })
+
+-- reload init.lua
+vim.api.nvim_set_keymap("n", "<Leader>so", ":so $MYVIMRC<CR>", { noremap = true, silent = true })

@@ -5,29 +5,25 @@ end, 0)
 require "core"
 require "core.options"
 
-require("plugins")
+require "plugins"
 
 vim.g.rustaceanvim = {
   -- Plugin configuration
-  tools = {
-  },
+  tools = {},
   -- LSP configuration
   server = {
-    on_attach = function(client, bufnr)
-    end,
+    on_attach = function(client, bufnr) end,
     default_settings = {
       -- rust-analyzer language server configuration
-      ['rust-analyzer'] = {
-        checkOnSave = false,
-      -- temp
+      ["rust-analyzer"] = {
+        checkOnSave = true,
+        -- temp
         -- ['cargo'] = {
         --   features = { 'prove' },
         -- },
       },
-
     },
   },
   -- DAP configuration
-  dap = {
-  },
+  dap = {},
 }

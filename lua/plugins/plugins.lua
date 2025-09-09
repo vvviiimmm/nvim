@@ -23,8 +23,10 @@ local plugins = {
     lazy = false,
   },
 
+  -- Completions
   {
     "hrsh7th/nvim-cmp",
+    enabled = false,
     -- load cmp on InsertEnter
     event = "InsertEnter",
     -- these dependencies will only be loaded when cmp loads
@@ -32,6 +34,9 @@ local plugins = {
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
+      "hrsh7th/cmp-path",
     },
     config = require "plugins.configs.cmp",
   },
@@ -98,27 +103,30 @@ local plugins = {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      -- vim.lsp.enable('lua_lsss')
-      require('lspconfig').lua_ls.setup{}
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
+      require("lspconfig").lua_ls.setup {
+        capabilities = capabilities,
+      }
     end,
     dependencies = {
+      { "saghen/blink.cmp" },
       {
-    "folke/lazydev.nvim",
-    ft = "lua", -- only load on lua files
-    opts = {
-      library = {
-        -- See the configuration section for more details
-        -- Load luvit types when the `vim.uv` word is found
-        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
+        opts = {
+          library = {
+            -- See the configuration section for more details
+            -- Load luvit types when the `vim.uv` word is found
+            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+          },
+        },
       },
     },
-  },
-    },
     -- keys = {
-      -- { "<leader>gd", "<cmd> lua vim.lsp.buf.definition() <CR>", desc = "go to definition" },
-      -- { "<leader>gg", "<cmd> lua vim.lsp.buf.declaration() <CR>", desc = "go to declaration" },
-      -- { "<leader>gr", "<cmd> lua vim.lsp.buf.references() <CR>", desc = "go to references" },
-      -- { "<leader>gi", "<cmd> lua vim.lsp.buf.implementation() <CR>", desc = "go to implementation" },
+    -- { "<leader>gd", "<cmd> lua vim.lsp.buf.definition() <CR>", desc = "go to definition" },
+    -- { "<leader>gg", "<cmd> lua vim.lsp.buf.declaration() <CR>", desc = "go to declaration" },
+    -- { "<leader>gr", "<cmd> lua vim.lsp.buf.references() <CR>", desc = "go to references" },
+    -- { "<leader>gi", "<cmd> lua vim.lsp.buf.implementation() <CR>", desc = "go to implementation" },
     -- },
   },
 
@@ -148,7 +156,7 @@ local plugins = {
     -- disable by default, only use when absolutely necessary
     config = function()
       vim.g.copilot_enabled = false
-      vim.g.copilot_node_command = "/Users/vi/.nvm/versions/node/v20.19.0/bin/node" 
+      vim.g.copilot_node_command = "/Users/vi/.nvm/versions/node/v20.19.0/bin/node"
     end,
   },
 
@@ -224,9 +232,13 @@ local plugins = {
     keys = {
       { "<leader>rf", "<cmd> RustFmt <CR>", desc = "rustfmt" },
       { "<leader>rd", "<cmd> RustLsp openDocs <CR>", desc = "openRustDocs" },
-      { "<leader>sc", function() 
-        vim.cmd.RustLsp { 'flyCheck', 'run' }
-      end, desc = "manually run rust-analyzer check (hacky)" },
+      {
+        "<leader>sc",
+        function()
+          vim.cmd.RustLsp { "flyCheck", "run" }
+        end,
+        desc = "manually run rust-analyzer check (hacky)",
+      },
     },
   },
 
@@ -241,8 +253,6 @@ local plugins = {
     config = require "plugins.configs.hop",
   },
 
-  { "hrsh7th/cmp-nvim-lsp" },
-
   {
     "RRethy/vim-illuminate",
     config = require "plugins.configs.illuminate",
@@ -253,13 +263,6 @@ local plugins = {
     "nvim-lualine/lualine.nvim",
     opts = require "plugins.configs.lualine",
   },
-
-  { "hrsh7th/cmp-nvim-lua" },
-  { "hrsh7th/cmp-nvim-lsp-signature-help" },
-  -- { "hrsh7th/cmp-vsnip" },
-  { "hrsh7th/cmp-path" },
-  { "hrsh7th/cmp-buffer" },
-  -- { "hrsh7th/vim-vsnip" },
 
   {
     "folke/trouble.nvim",
@@ -563,40 +566,31 @@ local plugins = {
     },
   },
 
-  {
-    "kevinhwang91/nvim-ufo",
-    dependencies = { "kevinhwang91/promise-async" },
-    opts = {
-      provider_selector = function(bufnr, filetype, buftype)
-        return { "treesitter", "indent" }
-      end,
-    },
-    config = require "plugins.configs.ufo",
-  },
+  -- {
+  --   "kevinhwang91/nvim-ufo",
+  --   dependencies = { "kevinhwang91/promise-async" },
+  --   opts = {
+  --     provider_selector = function(bufnr, filetype, buftype)
+  --       return { "treesitter", "indent" }
+  --     end,
+  --   },
+  --   config = require "plugins.configs.ufo",
+  -- },
 
   {
     "L3MON4D3/LuaSnip",
     version = "v2.*",
-    dependencies = {
-      -- "rafamadriz/friendly-snippets",
-      "saadparwaiz1/cmp_luasnip",
-    },
     build = "make install_jsregexp",
     config = function()
       require("luasnip.loaders.from_lua").load { paths = "~/.config/nvim/lua/snippets/" }
-      -- require("luasnip").config.setup {}
     end,
     keys = {},
   },
 
   {
-    "saadparwaiz1/cmp_luasnip",
-  },
-
-  {
     "benfowler/telescope-luasnip.nvim",
   },
-
+  --
   {
     "MagicDuck/grug-far.nvim",
     config = function()
@@ -628,59 +622,72 @@ local plugins = {
   },
 
   {
-    enabled = false,
-  'saghen/blink.cmp',
-  -- optional: provides snippets for the snippet source
-  dependencies = { 'rafamadriz/friendly-snippets' },
+    enabled = true,
+    "saghen/blink.cmp",
+    -- optional: provides snippets for the snippet source
+    dependencies = { "rafamadriz/friendly-snippets" },
 
-  -- use a release tag to download pre-built binaries
-  version = '1.*',
-  -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-  -- build = 'cargo build --release',
-  -- If you use nix, you can build from source using latest nightly rust with:
-  -- build = 'nix run .#build-plugin',
+    version = "1.*",
+    opts = {
+      -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+      -- 'super-tab' for mappings similar to vscode (tab to accept)
+      -- 'enter' for enter to accept
+      -- 'none' for no mappings
+      --
+      -- All presets have the following mappings:
+      -- C-space: Open menu or open docs if already open
+      -- C-n/C-p or Up/Down: Select next/previous item
+      -- C-e: Hide menu
+      -- C-k: Toggle signature help (if signature.enabled = true)
+      --
+      -- See :h blink-cmp-config-keymap for defining your own keymap
+      keymap = { preset = "enter" },
 
-  ---@module 'blink.cmp'
-  ---@type blink.cmp.Config
-  opts = {
-    -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
-    -- 'super-tab' for mappings similar to vscode (tab to accept)
-    -- 'enter' for enter to accept
-    -- 'none' for no mappings
-    --
-    -- All presets have the following mappings:
-    -- C-space: Open menu or open docs if already open
-    -- C-n/C-p or Up/Down: Select next/previous item
-    -- C-e: Hide menu
-    -- C-k: Toggle signature help (if signature.enabled = true)
-    --
-    -- See :h blink-cmp-config-keymap for defining your own keymap
-    keymap = { preset = 'default' },
+      appearance = {
+        -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+        -- Adjusts spacing to ensure icons are aligned
+        nerd_font_variant = "mono",
+      },
 
-    appearance = {
-      -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-      -- Adjusts spacing to ensure icons are aligned
-      nerd_font_variant = 'mono'
+      -- (Default) Only show the documentation popup when manually triggered
+      completion = { documentation = { auto_show = true } },
+
+      snippets = { preset = "luasnip" },
+      -- Default list of enabled providers defined so that you can extend it
+      -- elsewhere in your config, without redefining it, due to `opts_extend`
+      sources = {
+        default = { "lsp", "path", "snippets", "buffer" },
+      },
+
+      -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+      -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+      -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
+      --
+      -- See the fuzzy documentation for more information
+      fuzzy = { implementation = "prefer_rust_with_warning" },
+      signature = { enabled = true },
+      -- signature = { enabled = true, window = { border = 'rounded' } },
     },
+    opts_extend = { "sources.default" },
+  },
 
-    -- (Default) Only show the documentation popup when manually triggered
-    completion = { documentation = { auto_show = false } },
-
-    -- Default list of enabled providers defined so that you can extend it
-    -- elsewhere in your config, without redefining it, due to `opts_extend`
-    sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
+  {
+    "stevearc/conform.nvim",
+    opts = {},
+    config = {
+      formatters_by_ft = {
+        lua = { "stylua" },
+        python = { "isort", "black" },
+        rust = { "rustfmt", lsp_format = "fallback" },
+        javascript = { "prettierd", "prettier", stop_after_first = true },
+      },
+      -- format_on_save = {
+      --   -- These options will be passed to conform.format()
+      --   timeout_ms = 500,
+      --   lsp_format = "fallback",
+      -- },
     },
-
-    -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
-    -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
-    -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
-    --
-    -- See the fuzzy documentation for more information
-      fuzzy = { implementation = "prefer_rust_with_warning" }
-    },
-    opts_extend = { "sources.default" }
-  }
+  },
 }
 
 local opts = {}

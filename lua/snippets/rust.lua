@@ -129,9 +129,9 @@ return {
     }
   ),
 
-  
   -- clap boiler
-  s("!clap",
+  s(
+    "!clap",
     t {
       "use std::path::PathBuf;",
       "",
@@ -142,7 +142,7 @@ return {
       "struct Cli {",
       "    name: Option<String>,",
       "",
-      "    #[arg(short, long, value_name = \"FILE\")]",
+      '    #[arg(short, long, value_name = "FILE")]',
       "    config: Option<PathBuf>,",
       "",
       "    #[arg(short, long, action = clap::ArgAction::Count)]",
@@ -245,18 +245,19 @@ return {
   --       "println!(\"Time elapsed: {duration:?}\");" },
   -- }),
 
-  s("!mtime", {
-    t { "macro_rules! time {",
-        "    ($expression:expr) => {",
-        "        let start_time = std::time::Instant::now();",
-        "        let result = $expression;",
-        "        let end_time = std::time::Instant::now();",
-        "        let duration = end_time.duration_since(start_time);",
-        "        println!(\"Time elapsed for '{}': {:?}\", stringify!($expression), duration);",
-        "        result",
-        "    };",
-        "}",
-    }
+  s("timesnip", {
+    t {
+      "macro_rules! time {",
+      "    ($expression:expr) => {",
+      "        let start_time = std::time::Instant::now();",
+      "        let result = $expression;",
+      "        let end_time = std::time::Instant::now();",
+      "        let duration = end_time.duration_since(start_time);",
+      "        println!(\"Time elapsed for '{}': {:?}\", stringify!($expression), duration);",
+      "        result",
+      "    };",
+      "}",
+    },
   }),
 
   -- Usage snippet for the timed! macro
@@ -266,7 +267,7 @@ return {
     t ")",
   }),
 
-  --Result type 
+  --Result type
   s("!res", {
     t "Result<",
     i(1, "T"),
